@@ -2,13 +2,13 @@
   "name": "spicyrss",
   "version": "0.0.1",
   "description": "RSS reader",
-  "main": "dist/index.js",
+  "main": "dist/src/server.js",
   "scripts": {
     "prebuild": "npm run lint",
     "build": "tsc",
     "prestart": "npm run build",
     "start": "node .",
-    "server:watch": "ts-node-dev --respawn --transpile-only src/index.ts",
+    "server:watch": "ts-node-dev --respawn --transpile-only src/server.ts",
     "lint:fix": "eslint --cache --ext .ts . --fix",
     "lint": "eslint --cache --ext .ts .",
     "test:unit": "jest --config=jest.unit.config.js"

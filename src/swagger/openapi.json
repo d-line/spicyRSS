@@ -1,7 +1,7 @@
 {
   "openapi": "3.0.1",
   "info": {
-    "title": "test API",
+    "title": "SpicyRSS API",
     "version": "v1"
   },
   "servers": [
@@ -11,38 +11,27 @@
   ],
   "tags": [
     {
-      "name": "API functions",
-      "description": "API functions of our application"
+      "name": "SpicyRSS API",
+      "description": "RSS reader API"
     }
   ],
   "paths": {
-    "/users/{id}": {
-      "get": {
-        "summary": "returns simple answer from get",
+    "/feeds": {
+      "post": {
+        "summary": "creates new feed",
         "tags": [
-          "API functions"
+          "feed"
         ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "description": "simple parameter",
-            "schema": {
-              "type": "string",
-              "example": "1"
-            }
-          }
-        ],
-        "description": "parameter id just for test",
-        "responses": {
-          "200": {
-            "description": "OK",
+        "requestBody": {
+          "required": true,
             "content": {
-              "document": {
+              "application/json": {
                 "schema": {
-                  "type": "string",
-                  "example": "some text"
+                  "$ref": "#/components/schemas/Feed"
+                },
+                "example": {
+                  "name": "The Verge",
+                  "url": "https://www.theverge.com/rss/index.xml"
                 }
               }
             }
@@ -50,56 +39,15 @@
         }
       }
     },
-    "/users": {
-      "post": {
-        "summary": "returns simple answer from post",
-        "tags": [
-          "API functions"
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Info"
-              },
-              "example": {
-                "country": "USA",
-                "city": "Salt Lake City"
-              }
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "description": "simple parameter",
-            "schema": {
-              "type": "string",
-              "example": "1"
-            }
-          }
-        ],
-        "description": "parameter id just for test",
-        "responses": {
-          "204": {
-            "description": "OK"
-          }
-        }
-      }
-    }
-  },
   "components": {
     "schemas": {
-      "Info": {
+      "Feed": {
         "type": "object",
         "properties": {
-          "country": {
+          "name": {
             "type": "string"
           },
-          "city": {
+          "url": {
             "type": "string"
           }
         }
