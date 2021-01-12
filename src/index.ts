@@ -5,6 +5,7 @@ import httpContext from 'express-http-context';
 import log4js from 'log4js';
 import { useExpressServer } from 'routing-controllers';
 import { UserController } from './controller/user-controller';
+import { GlobalErrorHandler } from './middleware/global-error-handler';
 
 dotenv.config();
 const port = process.env.PORT;
@@ -17,12 +18,9 @@ app.use(bodyParser.json());
 app.use(httpContext.middleware);
 
 useExpressServer(app, {
-  controllers: [UserController]
-});
-
-app.use((req, res, next) => {
-  httpContext.ns.bindEmitter(req);
-  httpContext.ns.bindEmitter(res);
+  controllers: [UserController],
+  middlewares: [GlobalErrorHandler],
+  defaultErrorHandler: false
 });
 
 app.listen(port, () => logger.info(`Running on port ${port}`));

@@ -1,18 +1,17 @@
-import { Action, Controller, Get, Param, UseAfter, UseBefore, UseInterceptor } from 'routing-controllers';
+import { Body, Controller, Get, OnUndefined, Param, Post } from 'routing-controllers';
 import 'reflect-metadata';
-import { loggingAfter, loggingBefore } from '../middleware/middleware';
+import { Info } from '../models/info';
 
 @Controller()
-@UseBefore(loggingBefore)
-@UseAfter(loggingAfter)
-@UseInterceptor(function (action: Action, content: any) {
-  console.log('change response...');
-  content = `[${content}]`;
-  return content;
-})
 export class UserController {
   @Get('/users/:id')
   getOne (@Param('id') id: number) {
     return `This action returns user #${id}`;
+  }
+
+  @Post('/users')
+  @OnUndefined(204)
+  postOne (@Body() info: Info) {
+    console.log(JSON.stringify(info));
   }
 }
