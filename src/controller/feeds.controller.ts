@@ -1,16 +1,29 @@
-import { Body, Controller, Delete, Get, Param, Post, Put } from 'routing-controllers';
+import { BadRequestError, Body, Controller, Delete, Get, Param, Post, Put } from 'routing-controllers';
 import 'reflect-metadata';
+import { Feed } from 'src/models/feed';
+import FeedModel from '../../src/models/feed.model';
 
 @Controller()
 export class FeedsController {
   @Get('/feeds')
   getAll () {
-    return 'GET ALL FEEDS';
+    return FeedModel.find().then(
+      feeds => {
+        return feeds;
+      }
+    );
   }
 
   @Post('/feeds')
-  addNew (@Body() feed: any) {
-    return `ADD NEW FEED ${JSON.stringify(feed)}`;
+  addNew (@Body() feed: Feed) {
+    if (feed.url.trim() === '') {
+      throw new BadRequestError('Request should contain feed url');
+    }
+    const createdFeed = new FeedModel(feed);
+    console.table(createdFeed);
+    return createdFeed.save().then(savedFeed => {
+      return savedFeed;
+    });
   }
 
   @Put('/feeds/:id')
