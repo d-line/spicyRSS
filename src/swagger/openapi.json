@@ -17,10 +17,29 @@
   ],
   "paths": {
     "/feeds": {
+      "get": {
+        "summary": "get list of feeds",
+        "tags": [
+          "Feed"
+        ],
+        "parameters": [],
+        "produces":"application/json",
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/Feed"
+              }
+            }
+          }
+        }
+      },
       "post": {
         "summary": "creates new feed",
         "tags": [
-          "feed"
+          "Feed"
         ],
         "requestBody": {
           "required": true,
@@ -49,7 +68,19 @@
           },
           "url": {
             "type": "string"
-          }
+          },
+          "lastFetched": {
+            "type": "date"
+          },
+          "createdAt": {
+            "type": "date"
+          },
+          "updatedAt": {
+            "type": "date"
+          },
+          "status":{ 
+            "type": "number"
+          } 
         }
       }
     }
