@@ -6,16 +6,21 @@ import httpContext from 'express-http-context';
 import swaggerUi from 'swagger-ui-express';
 import * as swaggerDocument from '../src/swagger/openapi.json';
 import { useExpressServer } from 'routing-controllers';
+import DB from './models/db';
 
 class App {
     public app: Application
     public port: number
     public logger: Logger;
+    public db: DB;
 
     constructor (controllers: any, middleware: any) {
       this.getEnvVariables();
       this.app = express();
+      this.db = new DB(this.logger);
+      this.db.connect();
 
+      this.app.use(log4js.connectLogger(this.logger, { level: 'info' }));
       this.app.use(bodyParser.json());
       this.app.use(httpContext.middleware);
       this.app.use('/api-doc', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
