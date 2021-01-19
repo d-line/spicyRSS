@@ -6,15 +6,13 @@ import httpContext from 'express-http-context';
 import swaggerUi from 'swagger-ui-express';
 import * as swaggerDocument from '../src/swagger/openapi.json';
 import { useExpressServer } from 'routing-controllers';
-import { GlobalErrorHandler } from './middleware/global-error-handler';
-import { FeedsController } from './controller/feeds-controller';
 
 class App {
     public app: Application
     public port: number
     public logger: Logger;
 
-    constructor () {
+    constructor (controllers: any, middleware: any) {
       this.getEnvVariables();
       this.app = express();
 
@@ -23,8 +21,8 @@ class App {
       this.app.use('/api-doc', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
       useExpressServer(this.app, {
-        controllers: [FeedsController],
-        middlewares: [GlobalErrorHandler],
+        controllers: controllers,
+        middlewares: middleware,
         defaultErrorHandler: false
       });
     }
