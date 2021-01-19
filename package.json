@@ -11,7 +11,8 @@
     "server:watch": "ts-node-dev --respawn --transpile-only src/server.ts",
     "lint:fix": "eslint --cache --ext .ts . --fix",
     "lint": "eslint --cache --ext .ts .",
-    "test:unit": "jest --config=jest.unit.config.js"
+    "test:unit": "jest --config=jest.unit.config.js",
+    "test": "npm run test:unit"
   },
   "author": "",
   "license": "ISC",

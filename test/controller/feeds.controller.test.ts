@@ -1,27 +1,33 @@
-// import bodyParser from 'body-parser';
-// import express from 'express';
+import bodyParser from 'body-parser';
+import express from 'express';
 // import request from 'supertest';
-// import { useExpressServer } from 'routing-controllers';
-// import { UserController } from '../../src/controller/user-controller';
-// import { GlobalErrorHandler } from '../../src/middleware/global-error-handler';
+import { useExpressServer } from 'routing-controllers';
+import { FeedsController } from '../../src/controller/feeds.controller';
+import { GlobalErrorHandler } from '../../src/middleware/global-error-handler';
 // import { Info } from '../../src/models/info';
 
-// let server;
+let server;
 
 describe('FeedsController', () => {
-  // beforeAll(async () => {
-  //   server = express();
-  //   server.use(bodyParser.json());
-  //   useExpressServer(server, {
-  //     controllers: [UserController],
-  //     middlewares: [GlobalErrorHandler],
-  //     defaultErrorHandler: false
-  //   });
-  // });
+  beforeAll(async () => {
+    server = express();
+    server.use(bodyParser.json());
+    useExpressServer(server, {
+      controllers: [FeedsController],
+      middlewares: [GlobalErrorHandler],
+      defaultErrorHandler: false
+    });
+  });
 
-  // afterEach(() => {
-  //   jest.restoreAllMocks();
-  // });
+  afterEach(() => {
+    jest.restoreAllMocks();
+  });
+
+  it('should return array of feeds', () => {
+    const feedsController = new FeedsController();
+    const res = feedsController.getAll();
+    expect(res).toBeDefined();
+  });
 
   // it('should successfully postOne with full body', () => {
   //   const userController = new UserController();
