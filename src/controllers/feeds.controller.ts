@@ -1,7 +1,9 @@
 import * as express from "express";
 import { Feed } from '../models/feed';
+import feedModel from '../models/feed.model';
+import Controller from './controller.interface';
 
-class FeedsController {
+class FeedsController implements Controller {
   public path = '/feeds';
   public router = express.Router();
 
@@ -20,19 +22,52 @@ class FeedsController {
     this.initializeRoutes();
   }
 
-  getAllFeeds = (request: express.Request, response: express.Response) => {
-    response.send(this.feeds);
-  }
-
-  createFeed = (request: express.Request, response: express.Response) => {
-    const feed: Feed = request.body;
-    this.feeds.push(feed);
-    response.send(feed);
-  }
-
   private initializeRoutes() {
     this.router.get(this.path, this.getAllFeeds);
+    this.router.get(`${this.path}/:id`, this.getFeedById);
     this.router.post(this.path, this.createFeed);
+    this.router.patch(`${this.path}/:id`, this.modifyFeed);
+    this.router.delete(`${this.path}/:id`, this.deleteFeed);
+  }
+
+  private getAllFeeds (request: express.Request, response: express.Response) {
+    feedModel.find().exec().then(feeds => {
+      response.send(feeds);
+    });
+  }
+
+  private getFeedById(request: express.Request, response: express.Response) {
+    const id = request.params.id
+    feedModel.findById(id).then(feed => {
+      response.send(feed);
+    });
+  }
+
+  private createFeed (request: express.Request, response: express.Response) {
+    const feed: Feed = request.body;
+    const createdFeed = new feedModel(feed);
+    createdFeed.save().then(savedFeed => {
+      response.send(savedFeed);
+    });
+  }
+
+  private modifyFeed (request: express.Request, response: express.Response) {
+    const id = request.params.id
+    const feed: Feed = request.body;
+    feedModel.findByIdAndUpdate(id, feed, {new: true}).then(updatedFeed => {
+      response.send(updatedFeed);
+    });
+  }
+
+  private deleteFeed (request: express.Request, response: express.Response) {
+    const id = request.params.id
+    feedModel.findByIdAndDelete(id).then(res => {
+      if (res) {
+        response.sendStatus(200);
+      } else {
+        response.sendStatus(404);
+      }
+    });
   }
 }
 

@@ -17,7 +17,8 @@ class App {
     const MONGO_URL = process.env.MONGO_URL;
     mongoose.connect(MONGO_URL, {
       useNewUrlParser: true,
-      useUnifiedTopology: true
+      useUnifiedTopology: true,
+      useFindAndModify: false
     });
   }
 

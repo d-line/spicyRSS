@@ -1,3 +1,4 @@
+// @ts-ignore
 import { cleanEnv, port, str } from 'envalid';
 
 function validateEnv() {
