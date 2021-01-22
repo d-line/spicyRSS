@@ -1,4 +1,5 @@
 import * as express from "express";
+import FeedNotFoundException from '../middleware/FeedNotFoundException';
 import { Feed } from '../models/feed';
 import feedModel from '../models/feed.model';
 import Controller from './controller.interface';
@@ -6,17 +7,6 @@ import Controller from './controller.interface';
 class FeedsController implements Controller {
   public path = '/feeds';
   public router = express.Router();
-
-  private feeds: Feed[] = [
-    {
-      name: '/r/algorithms',
-      url: 'https://www.reddit.com/r/algorithms/new/.rss',
-      status: 0,
-      lastFetched: new Date('1/21/21, 4:24 PM'),
-      createdAt: new Date('1/8/21, 9:53 AM'),
-      updatedAt: new Date('1/21/21, 5:50 PM')
-    }
-  ];
 
   constructor() {
     this.initializeRoutes();
@@ -36,10 +26,14 @@ class FeedsController implements Controller {
     });
   }
 
-  private getFeedById(request: express.Request, response: express.Response) {
+  private getFeedById(request: express.Request, response: express.Response, next: express.NextFunction) {
     const id = request.params.id
     feedModel.findById(id).then(feed => {
-      response.send(feed);
+      if (feed) {
+        response.send(feed);
+      } else {
+        next(new FeedNotFoundException(id));
+      }
     });
   }
 
@@ -51,21 +45,25 @@ class FeedsController implements Controller {
     });
   }
 
-  private modifyFeed (request: express.Request, response: express.Response) {
+  private modifyFeed (request: express.Request, response: express.Response, next: express.NextFunction) {
     const id = request.params.id
     const feed: Feed = request.body;
     feedModel.findByIdAndUpdate(id, feed, {new: true}).then(updatedFeed => {
-      response.send(updatedFeed);
+      if (updatedFeed) {
+        response.send(updatedFeed);
+      } else {
+        next(new FeedNotFoundException(id));
+      }
     });
   }
 
-  private deleteFeed (request: express.Request, response: express.Response) {
+  private deleteFeed (request: express.Request, response: express.Response, next: express.NextFunction) {
     const id = request.params.id
     feedModel.findByIdAndDelete(id).then(res => {
       if (res) {
         response.sendStatus(200);
       } else {
-        response.sendStatus(404);
+        next(new FeedNotFoundException(id));
       }
     });
   }

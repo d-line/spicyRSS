@@ -1,4 +1,3 @@
-import * as mongoose from 'mongoose';
 import App from './app';
 import FeedsController from './controllers/feeds.controller';
 import 'dotenv/config';
