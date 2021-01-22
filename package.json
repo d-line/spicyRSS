@@ -1,0 +1,25 @@
+{
+  "name": "spicyrss",
+  "version": "0.0.1",
+  "description": "RSS Reader",
+  "main": "index.js",
+  "scripts": {
+    "dev": "ts-node ./src/server.ts",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/d-line/spicyRSS.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/d-line/spicyRSS/issues"
+  },
+  "homepage": "https://github.com/d-line/spicyRSS#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "ts-node": "^9.1.1",
+    "typescript": "^4.1.3"
+  }
+}
