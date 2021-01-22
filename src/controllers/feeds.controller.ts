@@ -3,6 +3,9 @@ import FeedNotFoundException from '../middleware/FeedNotFoundException';
 import { Feed } from '../models/feed';
 import feedModel from '../models/feed.model';
 import Controller from './controller.interface';
+// @ts-ignore
+import * as rssFinder from 'rss-finder';
+import * as Parser from 'rss-parser';
 
 class FeedsController implements Controller {
   public path = '/feeds';
@@ -22,6 +25,7 @@ class FeedsController implements Controller {
 
   private getAllFeeds (request: express.Request, response: express.Response) {
     feedModel.find().exec().then(feeds => {
+      console.table(feeds);
       response.send(feeds);
     });
   }
@@ -38,10 +42,23 @@ class FeedsController implements Controller {
   }
 
   private createFeed (request: express.Request, response: express.Response) {
-    const feed: Feed = request.body;
-    const createdFeed = new feedModel(feed);
-    createdFeed.save().then(savedFeed => {
-      response.send(savedFeed);
+    const feedUrl: string = request.body.url;
+    console.table(feedUrl);
+
+    rssFinder(feedUrl).then(urls => {
+      console.table(urls);
+      const feedUrl = urls.feedUrls[0].url;
+      const parser = new Parser();
+      parser.parseURL(feedUrl).then(data => {
+        console.table(data);
+        const newFeed: Feed = {
+          name: data.title,
+          url: data.feedUrl || feedUrl
+        }
+        feedModel.create(newFeed).then(savedFeed => {
+          response.send(savedFeed);
+        })
+      })
     });
   }
 
