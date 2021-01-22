@@ -1,7 +1,0 @@
-dist/
-node_modules/
-.idea/
-test/coverage/
-.env
-.eslintcache
-db
