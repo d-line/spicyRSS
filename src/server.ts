@@ -7,7 +7,11 @@ const router = express.Router();
 app.use(bodyParser.json());
 
 router.get('/', (request, response) => {
-  response.send('Spicy RSS');
+  response.send({
+    hostname: request.hostname,
+    path: request.path,
+    method: request.method,
+  });
 });
 
 router.post('/', (request, response) => {
