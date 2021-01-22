@@ -1,16 +1,12 @@
+import * as bodyParser from 'body-parser';
 import * as express from "express";
-
-function loggerMiddleware(request: express.Request, response: express.Response, next) {
-  console.log(`${request.method} ${request.path}`);
-  next();
-}
 
 const app = express();
 
-app.use(loggerMiddleware);
+app.use(bodyParser.json());
 
-app.get('/', (request, response) => {
-  response.send('Hello, RSS!');
+app.post('/', (request, response) => {
+  response.send(request.body);
 });
 
 app.listen(5000);
