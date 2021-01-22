@@ -1,10 +1,12 @@
 import * as express from "express";
+import authMiddleware from '../middleware/auth.middleware';
 import FeedNotFoundException from '../middleware/FeedNotFoundException';
 import { Feed } from '../models/feed';
 import feedModel from '../models/feed.model';
 import Controller from './controller.interface';
 // @ts-ignore
 import * as rssFinder from 'rss-finder';
+// @ts-ignore
 import * as Parser from 'rss-parser';
 
 class FeedsController implements Controller {
@@ -16,6 +18,7 @@ class FeedsController implements Controller {
   }
 
   private initializeRoutes() {
+    this.router.use(this.path, authMiddleware);
     this.router.get(this.path, this.getAllFeeds);
     this.router.get(`${this.path}/:id`, this.getFeedById);
     this.router.post(this.path, this.createFeed);
