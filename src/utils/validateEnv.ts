@@ -1,11 +1,11 @@
 // @ts-ignore
-import { cleanEnv, port, str } from 'envalid';
+import { cleanEnv, port, str } from 'envalid'
 
-function validateEnv() {
+function validateEnv () {
   cleanEnv(process.env, {
     MONGO_URL: str(),
-    PORT: port(),
-  });
+    PORT: port()
+  })
 }
 
-export default validateEnv;
+export default validateEnv

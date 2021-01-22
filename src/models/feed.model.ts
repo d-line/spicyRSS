@@ -1,5 +1,5 @@
-import * as mongoose from 'mongoose';
-import { Feed } from './feed';
+import * as mongoose from 'mongoose'
+import { Feed } from './feed'
 
 const feedSchema = new mongoose.Schema({
   name: String,
@@ -8,7 +8,7 @@ const feedSchema = new mongoose.Schema({
   status: Number
 }, {
   timestamps: true
-});
+})
 
-const feedModel = mongoose.model<Feed & mongoose.Document>('Feed', feedSchema);
-export default feedModel;
+const feedModel = mongoose.model<Feed & mongoose.Document>('Feed', feedSchema)
+export default feedModel
