@@ -1,16 +1,24 @@
 import * as bodyParser from 'body-parser';
 import * as express from "express";
+import * as mongoose from 'mongoose';
 
 class App {
   public app: express.Application;
-  public port: number;
 
-  constructor(controller, port) {
+  constructor(controller) {
     this.app = express();
-    this.port = port;
 
+    this.connectToTheDatabase();
     this.initializeMiddleware();
     this.initializeController(controller);
+  }
+
+  private connectToTheDatabase() {
+    const MONGO_URL = process.env.MONGO_URL;
+    mongoose.connect(MONGO_URL, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true
+    });
   }
 
   private initializeMiddleware() {
@@ -24,8 +32,8 @@ class App {
   }
 
   public listen() {
-    this.app.listen(this.port, () => {
-      console.log(`App listening on the port ${this.port}`);
+    this.app.listen(process.env.PORT, () => {
+      console.log(`App listening on the port ${process.env.PORT}`);
     });
   }
 }
