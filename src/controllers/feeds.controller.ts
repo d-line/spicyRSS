@@ -1,6 +1,6 @@
 import * as express from 'express';
 import 'reflect-metadata';
-import { Body, Delete, Get, JsonController, Param, Patch, Post, Res, UseAfter, UseBefore } from 'routing-controllers';
+import { Body, Delete, Get, JsonController, OnUndefined, Param, Patch, Post, Res, UseAfter, UseBefore } from 'routing-controllers';
 import FeedNotFoundException from '../middleware/FeedNotFoundException';
 import { loggingAfter, loggingBefore } from '../middleware/middleware';
 import { Feed, FeedUrl } from '../models/feed';
@@ -31,6 +31,7 @@ export class FeedsController {
   }
 
   @Post('/feeds')
+  @OnUndefined(204)
   public createFeed (@Body() feedUrl: FeedUrl) {
     console.table(feedUrl);
     return rssFinder(feedUrl).then((urls) => {
