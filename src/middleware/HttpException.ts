@@ -4,10 +4,10 @@ class HttpException extends Error {
   public message: string;
 
   constructor (status: number, message: string) {
-    super(message)
-    this.status = status
-    this.message = message
+    super(message);
+    this.status = status;
+    this.message = message;
   }
 }
 
-export default HttpException
+export default HttpException;

@@ -1,3 +1,5 @@
+import { IsDefined, IsUrl } from 'class-validator';
+
 export interface Feed {
   name: string;
   url: string;
@@ -5,4 +7,10 @@ export interface Feed {
   lastFetched?: Date;
   createdAt?: Date;
   updatedAt?: Date;
+}
+
+export class FeedUrl {
+  @IsDefined()
+  @IsUrl()
+  url: string;
 }

@@ -1,10 +1,14 @@
-import { NextFunction, Request, Response } from 'express'
-import HttpException from './HttpException'
+import { ExpressErrorMiddlewareInterface, Middleware } from 'routing-controllers';
 
-function errorMiddleware (error: HttpException, request: Request, response: Response, next: NextFunction) {
-  const status = error.status || 500
-  const message = error.message || 'Something went wrong'
-  response.status(status).send({ status, message })
+@Middleware({ type: 'after' })
+export class GlobalErrorHandler implements ExpressErrorMiddlewareInterface {
+  error (error: any, request: any, response: any, next: () => any) {
+    console.log(error.status, error.message);
+    const e = {
+      status: error.status || 500,
+      message: error.message || 'Something went wrong'
+    };
+    response.send({ error: e });
+    next();
+  }
 }
-
-export default errorMiddleware

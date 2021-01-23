@@ -1,11 +1,11 @@
-import * as mongoose from 'mongoose'
-import { User } from './user'
+import * as mongoose from 'mongoose';
+import { User } from './user';
 
 const userSchema = new mongoose.Schema({
   name: String,
   email: String,
   password: String
-})
+});
 
-const userModel = mongoose.model<User & mongoose.Document>('User', userSchema)
-export default userModel
+const userModel = mongoose.model<User & mongoose.Document>('User', userSchema);
+export default userModel;

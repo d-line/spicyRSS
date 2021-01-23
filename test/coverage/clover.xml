@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1611369656877" clover="3.2.0">
+  <project timestamp="1611369656877" name="All files">
+    <metrics statements="204" coveredstatements="33" conditionals="41" coveredconditionals="0" methods="49" coveredmethods="4" elements="294" coveredelements="37" complexity="0" loc="204" ncloc="204" packages="5" files="16" classes="16"/>
+    <package name="src">
+      <metrics statements="37" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="9" coveredmethods="0"/>
+      <file name="app.ts" path="/Volumes/SURVIVOR/code/spicyRSS/src/app.ts">
+        <metrics statements="30" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="9" coveredmethods="0"/>
+        <line num="1" count="0" type="stmt"/>
+        <line num="2" count="0" type="stmt"/>
+        <line num="3" count="0" type="stmt"/>
+        <line num="4" count="0" type="stmt"/>
+        <line num="5" count="0" type="stmt"/>
+        <line num="6" count="0" type="stmt"/>
+        <line num="7" count="0" type="stmt"/>
+        <line num="9" count="0" type="stmt"/>
+        <line num="14" count="0" type="stmt"/>
+        <line num="16" count="0" type="stmt"/>
+        <line num="17" count="0" type="stmt"/>
+        <line num="18" count="0" type="stmt"/>
+        <line num="19" count="0" type="stmt"/>
+        <line num="22" count="0" type="stmt"/>
+        <line num="23" count="0" type="stmt"/>
+        <line num="24" count="0" type="stmt"/>
+        <line num="29" count="0" type="stmt"/>
+        <line num="33" count="0" type="stmt"/>
+        <line num="34" count="0" type="stmt"/>
+        <line num="35" count="0" type="stmt"/>
+        <line num="38" count="0" type="stmt"/>
+        <line num="39" count="0" type="stmt"/>
+        <line num="46" count="0" type="stmt"/>
+        <line num="47" count="0" type="stmt"/>
+        <line num="48" count="0" type="stmt"/>
+        <line num="51" count="0" type="stmt"/>
+        <line num="52" count="0" type="stmt"/>
+        <line num="53" count="0" type="stmt"/>
+        <line num="56" count="0" type="stmt"/>
+        <line num="58" count="0" type="stmt"/>
+      </file>
+      <file name="server.ts" path="/Volumes/SURVIVOR/code/spicyRSS/src/server.ts">
+        <metrics statements="7" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="1" count="0" type="stmt"/>
+        <line num="2" count="0" type="stmt"/>
+        <line num="3" count="0" type="stmt"/>
+        <line num="4" count="0" type="stmt"/>
+        <line num="6" count="0" type="stmt"/>
+        <line num="8" count="0" type="stmt"/>
+        <line num="13" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="src.controllers">
+      <metrics statements="95" coveredstatements="20" conditionals="21" coveredconditionals="0" methods="23" coveredmethods="2"/>
+      <file name="authentication.controller.ts" path="/Volumes/SURVIVOR/code/spicyRSS/src/controllers/authentication.controller.ts">
+        <metrics statements="53" coveredstatements="0" conditionals="13" coveredconditionals="0" methods="10" coveredmethods="0"/>
+        <line num="1" count="0" type="stmt"/>
+        <line num="2" count="0" type="stmt"/>
+        <line num="3" count="0" type="stmt"/>
+        <line num="4" count="0" type="stmt"/>
+        <line num="5" count="0" type="stmt"/>
+        <line num="8" count="0" type="stmt"/>
+        <line num="11" count="0" type="stmt"/>
+        <line num="12" count="0" type="stmt"/>
+        <line num="14" count="0" type="stmt"/>
+        <line num="16" count="0" type="stmt"/>
+        <line num="17" count="0" type="stmt"/>
+        <line num="20" count="0" type="stmt"/>
+        <line num="21" count="0" type="stmt"/>
+        <line num="22" count="0" type="stmt"/>
+        <line num="23" count="0" type="stmt"/>
+        <line num="26" count="0" type="stmt"/>
+        <line num="27" count="0" type="stmt"/>
+        <line num="28" count="0" type="stmt"/>
+        <line num="29" count="0" type="cond" truecount="0" falsecount="6"/>
+        <line num="30" count="0" type="stmt"/>
+        <line num="33" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="35" count="0" type="stmt"/>
+        <line num="37" count="0" type="cond" truecount="0" falsecount="1"/>
+        <line num="38" count="0" type="stmt"/>
+        <line num="42" count="0" type="stmt"/>
+        <line num="43" count="0" type="stmt"/>
+        <line num="44" count="0" type="stmt"/>
+        <line num="45" count="0" type="stmt"/>
+        <line num="46" count="0" type="stmt"/>
+        <line num="50" count="0" type="stmt"/>
+        <line num="51" count="0" type="stmt"/>
+        <line num="52" count="0" type="stmt"/>
+        <line num="53" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="54" count="0" type="stmt"/>
+        <line num="55" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="56" count="0" type="stmt"/>
+        <line num="57" count="0" type="stmt"/>
+        <line num="58" count="0" type="stmt"/>
+        <line num="59" count="0" type="stmt"/>
+        <line num="61" count="0" type="stmt"/>
+        <line num="64" count="0" type="stmt"/>
+        <line num="68" count="0" type="stmt"/>
+        <line num="69" count="0" type="stmt"/>
+        <line num="70" count="0" type="stmt"/>
+        <line num="73" count="0" type="stmt"/>
+        <line num="74" count="0" type="stmt"/>
+        <line num="77" count="0" type="stmt"/>
+        <line num="78" count="0" type="stmt"/>
+        <line num="79" count="0" type="stmt"/>
+        <line num="80" count="0" type="stmt"/>
+        <line num="83" count="0" type="stmt"/>
+        <line num="88" count="0" type="stmt"/>
+        <line num="90" count="0" type="stmt"/>
+      </file>
+      <file name="feeds.controller.ts" path="/Volumes/SURVIVOR/code/spicyRSS/src/controllers/feeds.controller.ts">
+        <metrics statements="42" coveredstatements="20" conditionals="8" coveredconditionals="0" methods="13" coveredmethods="2"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="2" count="1" type="stmt"/>
+        <line num="3" count="1" type="stmt"/>
+        <line num="4" count="1" type="stmt"/>
+        <line num="5" count="1" type="stmt"/>
+        <line num="6" count="1" type="stmt"/>
+        <line num="7" count="1" type="stmt"/>
+        <line num="8" count="1" type="stmt"/>
+        <line num="9" count="1" type="stmt"/>
+        <line num="14" count="1" type="stmt"/>
+        <line num="15" count="1" type="stmt"/>
+        <line num="16" count="1" type="stmt"/>
+        <line num="19" count="1" type="stmt"/>
+        <line num="20" count="0" type="stmt"/>
+        <line num="21" count="0" type="stmt"/>
+        <line num="26" count="1" type="stmt"/>
+        <line num="27" count="0" type="stmt"/>
+        <line num="28" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="29" count="0" type="stmt"/>
+        <line num="31" count="0" type="stmt"/>
+        <line num="37" count="1" type="stmt"/>
+        <line num="38" count="1" type="stmt"/>
+        <line num="39" count="1" type="stmt"/>
+        <line num="40" count="0" type="stmt"/>
+        <line num="41" count="0" type="stmt"/>
+        <line num="42" count="0" type="stmt"/>
+        <line num="43" count="0" type="stmt"/>
+        <line num="44" count="0" type="stmt"/>
+        <line num="45" count="0" type="stmt"/>
+        <line num="49" count="0" type="stmt"/>
+        <line num="50" count="0" type="stmt"/>
+        <line num="57" count="1" type="stmt"/>
+        <line num="58" count="0" type="stmt"/>
+        <line num="59" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="60" count="0" type="stmt"/>
+        <line num="62" count="0" type="stmt"/>
+        <line num="68" count="1" type="stmt"/>
+        <line num="69" count="0" type="stmt"/>
+        <line num="70" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="71" count="0" type="stmt"/>
+        <line num="73" count="0" type="stmt"/>
+        <line num="77" count="1" type="stmt"/>
+      </file>
+    </package>
+    <package name="src.middleware">
+      <metrics statements="57" coveredstatements="5" conditionals="20" coveredconditionals="0" methods="15" coveredmethods="1"/>
+      <file name="AuthenticationTokenMissingException.ts" path="/Volumes/SURVIVOR/code/spicyRSS/src/middleware/AuthenticationTokenMissingException.ts">
+        <metrics statements="5" coveredstatements="0" conditionals="2" coveredconditionals="0" methods="2" coveredmethods="0"/>
+        <line num="1" count="0" type="stmt"/>
+        <line num="3" count="0" type="stmt"/>
+        <line num="5" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="7" count="0" type="stmt"/>
+        <line num="9" count="0" type="stmt"/>
+      </file>
+      <file name="HttpException.ts" path="/Volumes/SURVIVOR/code/spicyRSS/src/middleware/HttpException.ts">
+        <metrics statements="6" coveredstatements="3" conditionals="2" coveredconditionals="0" methods="2" coveredmethods="1"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="7" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="8" count="0" type="stmt"/>
+        <line num="9" count="0" type="stmt"/>
+        <line num="11" count="1" type="stmt"/>
+        <line num="13" count="1" type="stmt"/>
+      </file>
+      <file name="UserWithThatEmailAlreadyExistsException.ts" path="/Volumes/SURVIVOR/code/spicyRSS/src/middleware/UserWithThatEmailAlreadyExistsException.ts">
+        <metrics statements="5" coveredstatements="0" conditionals="2" coveredconditionals="0" methods="2" coveredmethods="0"/>
+        <line num="1" count="0" type="stmt"/>
+        <line num="3" count="0" type="stmt"/>
+        <line num="5" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="7" count="0" type="stmt"/>
+        <line num="9" count="0" type="stmt"/>
+      </file>
+      <file name="WrongAuthenticationTokenException.ts" path="/Volumes/SURVIVOR/code/spicyRSS/src/middleware/WrongAuthenticationTokenException.ts">
+        <metrics statements="5" coveredstatements="0" conditionals="2" coveredconditionals="0" methods="2" coveredmethods="0"/>
+        <line num="1" count="0" type="stmt"/>
+        <line num="3" count="0" type="stmt"/>
+        <line num="5" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="7" count="0" type="stmt"/>
+        <line num="9" count="0" type="stmt"/>
+      </file>
+      <file name="WrongCredentialsException.ts" path="/Volumes/SURVIVOR/code/spicyRSS/src/middleware/WrongCredentialsException.ts">
+        <metrics statements="5" coveredstatements="0" conditionals="2" coveredconditionals="0" methods="2" coveredmethods="0"/>
+        <line num="1" count="0" type="stmt"/>
+        <line num="3" count="0" type="stmt"/>
+        <line num="5" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="7" count="0" type="stmt"/>
+        <line num="9" count="0" type="stmt"/>
+      </file>
+      <file name="auth.middleware.ts" path="/Volumes/SURVIVOR/code/spicyRSS/src/middleware/auth.middleware.ts">
+        <metrics statements="17" coveredstatements="0" conditionals="6" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="1" count="0" type="stmt"/>
+        <line num="5" count="0" type="stmt"/>
+        <line num="6" count="0" type="stmt"/>
+        <line num="7" count="0" type="stmt"/>
+        <line num="10" count="0" type="stmt"/>
+        <line num="11" count="0" type="cond" truecount="0" falsecount="4"/>
+        <line num="12" count="0" type="stmt"/>
+        <line num="14" count="0" type="stmt"/>
+        <line num="15" count="0" type="stmt"/>
+        <line num="16" count="0" type="stmt"/>
+        <line num="17" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="18" count="0" type="stmt"/>
+        <line num="19" count="0" type="stmt"/>
+        <line num="21" count="0" type="stmt"/>
+        <line num="24" count="0" type="stmt"/>
+        <line num="27" count="0" type="stmt"/>
+        <line num="31" count="0" type="stmt"/>
+      </file>
+      <file name="error.middleware.ts" path="/Volumes/SURVIVOR/code/spicyRSS/src/middleware/error.middleware.ts">
+        <metrics statements="8" coveredstatements="0" conditionals="4" coveredconditionals="0" methods="2" coveredmethods="0"/>
+        <line num="1" count="0" type="stmt"/>
+        <line num="4" count="0" type="stmt"/>
+        <line num="5" count="0" type="stmt"/>
+        <line num="6" count="0" type="stmt"/>
+        <line num="7" count="0" type="stmt"/>
+        <line num="11" count="0" type="stmt"/>
+        <line num="12" count="0" type="stmt"/>
+        <line num="14" count="0" type="stmt"/>
+      </file>
+      <file name="middleware.ts" path="/Volumes/SURVIVOR/code/spicyRSS/src/middleware/middleware.ts">
+        <metrics statements="6" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="0"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="2" count="0" type="stmt"/>
+        <line num="3" count="0" type="stmt"/>
+        <line num="6" count="1" type="stmt"/>
+        <line num="7" count="0" type="stmt"/>
+        <line num="8" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="src.models">
+      <metrics statements="12" coveredstatements="8" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+      <file name="feed.model.ts" path="/Volumes/SURVIVOR/code/spicyRSS/src/models/feed.model.ts">
+        <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="4" count="1" type="stmt"/>
+        <line num="13" count="1" type="stmt"/>
+        <line num="14" count="1" type="stmt"/>
+      </file>
+      <file name="feed.ts" path="/Volumes/SURVIVOR/code/spicyRSS/src/models/feed.ts">
+        <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="12" count="1" type="stmt"/>
+        <line num="15" count="1" type="stmt"/>
+        <line num="16" count="1" type="stmt"/>
+      </file>
+      <file name="user.model.ts" path="/Volumes/SURVIVOR/code/spicyRSS/src/models/user.model.ts">
+        <metrics statements="4" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="1" count="0" type="stmt"/>
+        <line num="4" count="0" type="stmt"/>
+        <line num="10" count="0" type="stmt"/>
+        <line num="11" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="src.utils">
+      <metrics statements="3" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+      <file name="validateEnv.ts" path="/Volumes/SURVIVOR/code/spicyRSS/src/utils/validateEnv.ts">
+        <metrics statements="3" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="2" count="0" type="stmt"/>
+        <line num="5" count="0" type="stmt"/>
+        <line num="11" count="0" type="stmt"/>
+      </file>
+    </package>
+  </project>
+</coverage>

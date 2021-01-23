@@ -1,7 +1,8 @@
 {
     "env": {
         "browser": true,
-        "es6": true
+        "es6": true,
+        "jest": true
     },
     "extends": [
         "standard"
@@ -19,5 +20,6 @@
         "@typescript-eslint"
     ],
     "rules": {
+        "semi": ["error", "always"]
     }
 }

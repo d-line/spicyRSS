@@ -1,14 +1,13 @@
-import App from './app'
-import AuthenticationController from './controllers/authentication.controller'
-import FeedsController from './controllers/feeds.controller'
-import 'dotenv/config'
-import validateEnv from './utils/validateEnv'
+import 'dotenv/config';
+import App from './app';
+import { FeedsController } from './controllers/feeds.controller';
+import validateEnv from './utils/validateEnv';
 
-validateEnv()
+validateEnv();
 
 const app = new App([
-  new AuthenticationController(),
-  new FeedsController()
-])
+  // AuthenticationController,
+  FeedsController
+]);
 
-app.listen()
+app.listen();

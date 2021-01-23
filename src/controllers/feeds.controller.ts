@@ -1,90 +1,77 @@
-import * as express from 'express'
-import * as rssFinder from 'rss-finder'
-import Parser from 'rss-parser'
-import authMiddleware from '../middleware/auth.middleware'
-import FeedNotFoundException from '../middleware/FeedNotFoundException'
-import { Feed } from '../models/feed'
-import feedModel from '../models/feed.model'
-import Controller from './controller.interface'
+import * as express from 'express';
+import 'reflect-metadata';
+import { Body, Delete, Get, JsonController, Param, Patch, Post, Res, UseAfter, UseBefore } from 'routing-controllers';
+import HttpException from '../middleware/HttpException';
+import { loggingAfter, loggingBefore } from '../middleware/middleware';
+import { Feed, FeedUrl } from '../models/feed';
+import feedModel from '../models/feed.model';
+import rssFinder from 'rss-finder';
+import Parser from 'rss-parser';
 
-class FeedsController implements Controller {
+@UseBefore(loggingBefore)
+@UseAfter(loggingAfter)
+@JsonController()
+export class FeedsController {
   public path = '/feeds';
   public router = express.Router();
 
-  constructor () {
-    this.initializeRoutes()
+  @Get('/feeds')
+  public getAllFeeds (request: express.Request, response: express.Response) {
+    return feedModel.find().lean().exec().then((feeds) => {
+      return feeds;
+    });
   }
 
-  private initializeRoutes () {
-    this.router.use(this.path, authMiddleware)
-    this.router.get(this.path, this.getAllFeeds)
-    this.router.get(`${this.path}/:id`, this.getFeedById)
-    this.router.post(this.path, this.createFeed)
-    this.router.patch(`${this.path}/:id`, this.modifyFeed)
-    this.router.delete(`${this.path}/:id`, this.deleteFeed)
-  }
-
-  private getAllFeeds (request: express.Request, response: express.Response) {
-    feedModel.find().exec().then((feeds) => {
-      console.table(feeds)
-      response.send(feeds)
-    })
-  }
-
-  private getFeedById (request: express.Request, response: express.Response, next: express.NextFunction) {
-    const { id } = request.params
-    feedModel.findById(id).then((feed) => {
+  @Get('/feeds/:id')
+  public getFeedById (@Param('id') id: string) {
+    return feedModel.findById(id).then((feed) => {
       if (feed) {
-        response.send(feed)
+        return feed;
       } else {
-        next(new FeedNotFoundException(id))
+        throw new HttpException(404, `Feed with id ${id} not found`);
       }
-    })
+    });
   }
 
-  private createFeed (request: express.Request, response: express.Response) {
-    const feedUrl: string = request.body.url
-    console.table(feedUrl)
-
-    rssFinder(feedUrl).then((urls) => {
-      console.table(urls)
-      const feedUrl = urls.feedUrls[0].url
-      const parser = new Parser()
-      parser.parseURL(feedUrl).then((data) => {
-        console.table(data)
+  @Post('/feeds')
+  public createFeed (@Body() feedUrl: FeedUrl) {
+    console.table(feedUrl);
+    return rssFinder(feedUrl).then((urls) => {
+      console.table(urls);
+      const feedUrl = urls.feedUrls[0].url;
+      const parser = new Parser();
+      return parser.parseURL(feedUrl).then((data) => {
+        console.table(data);
         const newFeed: Feed = {
           name: data.title,
           url: data.feedUrl || feedUrl
-        }
-        feedModel.create(newFeed).then((savedFeed) => {
-          response.send(savedFeed)
-        })
-      })
-    })
+        };
+        return feedModel.create(newFeed).then((savedFeed) => {
+          return savedFeed;
+        });
+      });
+    });
   }
 
-  private modifyFeed (request: express.Request, response: express.Response, next: express.NextFunction) {
-    const { id } = request.params
-    const feed: Feed = request.body
-    feedModel.findByIdAndUpdate(id, feed, { new: true }).then((updatedFeed) => {
+  @Patch('/feeds/:id')
+  public modifyFeed (@Param('id') id: string, @Body() feed: Feed) {
+    return feedModel.findByIdAndUpdate(id, feed, { new: true }).then((updatedFeed) => {
       if (updatedFeed) {
-        response.send(updatedFeed)
+        return updatedFeed;
       } else {
-        next(new FeedNotFoundException(id))
+        throw new HttpException(404, `Feed with id ${id} not found`);
       }
-    })
+    });
   }
 
-  private deleteFeed (request: express.Request, response: express.Response, next: express.NextFunction) {
-    const { id } = request.params
-    feedModel.findByIdAndDelete(id).then((res) => {
+  @Delete('/feeds/:id')
+  public deleteFeed (@Param('id') id: string, @Res() response: express.Response) {
+    return feedModel.findByIdAndDelete(id).then((res) => {
       if (res) {
-        response.sendStatus(200)
+        response.sendStatus(200);
       } else {
-        next(new FeedNotFoundException(id))
+        throw new HttpException(404, `Feed with id ${id} not found`);
       }
-    })
+    });
   }
 }
-
-export default FeedsController
