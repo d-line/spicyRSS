@@ -1,7 +1,7 @@
 import * as express from 'express';
 import 'reflect-metadata';
 import { Body, Delete, Get, JsonController, Param, Patch, Post, Res, UseAfter, UseBefore } from 'routing-controllers';
-import HttpException from '../middleware/HttpException';
+import FeedNotFoundException from '../middleware/FeedNotFoundException';
 import { loggingAfter, loggingBefore } from '../middleware/middleware';
 import { Feed, FeedUrl } from '../models/feed';
 import feedModel from '../models/feed.model';
@@ -12,11 +12,8 @@ import Parser from 'rss-parser';
 @UseAfter(loggingAfter)
 @JsonController()
 export class FeedsController {
-  public path = '/feeds';
-  public router = express.Router();
-
   @Get('/feeds')
-  public getAllFeeds (request: express.Request, response: express.Response) {
+  public getAllFeeds () {
     return feedModel.find().lean().exec().then((feeds) => {
       return feeds;
     });
@@ -28,7 +25,7 @@ export class FeedsController {
       if (feed) {
         return feed;
       } else {
-        throw new HttpException(404, `Feed with id ${id} not found`);
+        throw new FeedNotFoundException(id);
       }
     });
   }
@@ -59,7 +56,7 @@ export class FeedsController {
       if (updatedFeed) {
         return updatedFeed;
       } else {
-        throw new HttpException(404, `Feed with id ${id} not found`);
+        throw new FeedNotFoundException(id);
       }
     });
   }
@@ -70,7 +67,7 @@ export class FeedsController {
       if (res) {
         response.sendStatus(200);
       } else {
-        throw new HttpException(404, `Feed with id ${id} not found`);
+        throw new FeedNotFoundException(id);
       }
     });
   }
