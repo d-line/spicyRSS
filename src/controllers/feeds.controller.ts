@@ -1,15 +1,14 @@
 import * as express from 'express';
 import 'reflect-metadata';
-import { Body, Delete, Get, JsonController, OnUndefined, Param, Patch, Post, Res, UseAfter, UseBefore } from 'routing-controllers';
+import { Body, Delete, Get, JsonController, OnUndefined, Param, Patch, Post, Res, UseBefore } from 'routing-controllers';
 import FeedNotFoundException from '../middleware/FeedNotFoundException';
-import { loggingAfter, loggingBefore } from '../middleware/middleware';
 import { Feed, FeedUrl } from '../models/feed';
 import feedModel from '../models/feed.model';
 import rssFinder from 'rss-finder';
 import Parser from 'rss-parser';
+import authMiddleware from '../middleware/auth.middleware';
 
-@UseBefore(loggingBefore)
-@UseAfter(loggingAfter)
+@UseBefore(authMiddleware)
 @JsonController()
 export class FeedsController {
   @Get('/feeds')
@@ -47,6 +46,8 @@ export class FeedsController {
         return feedModel.create(newFeed).then((savedFeed) => {
           return savedFeed;
         });
+      }).catch(err => {
+        console.error(err);
       });
     });
   }

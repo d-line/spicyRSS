@@ -13,20 +13,22 @@ class App {
   constructor (controllers) {
     this.app = express();
 
+    this.initializeMiddleware();
     this.initializeController(controllers);
     this.setLogger();
     this.connectToTheDatabase();
-    this.initializeMiddleware();
   }
 
   private connectToTheDatabase () {
     const { MONGO_URL } = process.env;
     mongoose.connect(MONGO_URL, {
       useNewUrlParser: true,
-      useUnifiedTopology: true,
+      useUnifiedTopology: false,
       useFindAndModify: false
     }).then(() => {
       this.logger.info('MongoDB connected');
+    }).catch(err => {
+      this.logger.error(`MongoDB Error ${err}`);
     });
   }
 

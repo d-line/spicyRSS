@@ -1,38 +1,23 @@
 import * as bcrypt from 'bcrypt';
-import * as express from 'express';
+import express from 'express';
 import * as jwt from 'jsonwebtoken';
+import { Body, JsonController, Post, Req, Res } from 'routing-controllers';
 import UserWithThatEmailAlreadyExistsException from '../middleware/UserWithThatEmailAlreadyExistsException';
 import WrongCredentialsException from '../middleware/WrongCredentialsException';
 import { DataStoredInToken, TokenData } from '../models/token';
-import { User } from '../models/user';
+import { LoginData, User } from '../models/user';
 import userModel from '../models/user.model';
-import Controller from './controller.interface';
 
-class AuthenticationController implements Controller {
-  public path = '/auth';
-
-  public router = express.Router();
-
-  constructor () {
-    this.initializeRoutes();
-  }
-
-  private initializeRoutes () {
-    this.router.post(`${this.path}/register`, this.registration);
-    this.router.post(`${this.path}/login`, this.loggingIn);
-    this.router.post(`${this.path}/logout`, this.loggingOut);
-  }
-
-  private registration = async (request: express.Request, response: express.Response, next: express.NextFunction) => {
-    const userData: User = request.body;
-    console.table(userData);
+@JsonController()
+export class AuthenticationController {
+  @Post('/auth/register')
+  public async registration (@Body() userData: LoginData, @Res() response: express.Response) {
     if (!userData.email || !userData.password || userData.email.trim() === '' || userData.password.trim() === '') {
-      next(new WrongCredentialsException());
+      throw new WrongCredentialsException();
     }
-    if (
-      await userModel.findOne({ email: userData.email })
-    ) {
-      next(new UserWithThatEmailAlreadyExistsException(userData.email));
+
+    if (await userModel.findOne({ email: userData.email })) {
+      throw new UserWithThatEmailAlreadyExistsException(userData.email);
     } else {
       const hashedPassword = await bcrypt.hash(userData.password, 10);
       const user = await userModel.create({
@@ -47,10 +32,11 @@ class AuthenticationController implements Controller {
     }
   }
 
-  private loggingIn = async (request: express.Request, response: express.Response, next: express.NextFunction) => {
-    const logInData = request.body;
+  @Post('/auth/login')
+  public async loggingIn (@Body() logInData: LoginData, @Res() response: express.Response) {
     const user = await userModel.findOne({ email: logInData.email });
     if (user) {
+      console.log(user);
       const isPasswordMatching = await bcrypt.compare(logInData.password, user.password);
       if (isPasswordMatching) {
         user.password = undefined;
@@ -58,14 +44,15 @@ class AuthenticationController implements Controller {
         response.setHeader('Set-Cookie', [this.createCookie(tokenData)]);
         response.send(user);
       } else {
-        next(new WrongCredentialsException());
+        throw new WrongCredentialsException();
       }
     } else {
-      next(new WrongCredentialsException());
+      throw new WrongCredentialsException();
     }
   }
 
-  private loggingOut = (request: express.Request, response: express.Response) => {
+  @Post('/auth/logout')
+  public loggingOut (@Req() request: express.Request, @Res() response: express.Response) {
     response.setHeader('Set-Cookie', ['Authorization=;Max-age=0']);
     response.send(200);
   }
@@ -86,5 +73,3 @@ class AuthenticationController implements Controller {
     };
   }
 }
-
-export default AuthenticationController;
