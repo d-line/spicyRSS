@@ -2,6 +2,7 @@ import "dotenv/config";
 import * as mongoose from "mongoose";
 import * as express from "express";
 import * as bodyParser from "body-parser";
+import * as cookieParser from 'cookie-parser';  
 import errorMiddleware from './middleware/error.middleware';
 import Controller from "interfaces/controller.interface";
 
@@ -19,6 +20,7 @@ class App {
 
   private initializeMiddlewares() {
     this.app.use(bodyParser.json());
+    this.app.use(cookieParser());
   }
 
   private initializeControllers(controllers: Controller[]) {

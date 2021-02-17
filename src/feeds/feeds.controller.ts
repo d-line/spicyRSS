@@ -7,6 +7,7 @@ import Controller from "../interfaces/controller.interface";
 import FeedNotFoundException from "../exceptions/FeedNotFoundException";
 import { CreateFeedDto, FeedDto } from "./feed.dto";
 import validationMiddleware from "../middleware/validation.middleware";
+import authMiddleware from "../middleware/auth.middleware";
 
 class FeedsController implements Controller {
   public path = "/feeds";
@@ -17,19 +18,21 @@ class FeedsController implements Controller {
   }
 
   public intializeRoutes() {
-    this.router.get(this.path, this.getAllFeeds);
-    this.router.get(`${this.path}/:id`, this.getFeed);
+    this.router.get(this.path, authMiddleware, this.getAllFeeds);
+    this.router.get(`${this.path}/:id`, authMiddleware, this.getFeed);
     this.router.post(
       this.path,
+      authMiddleware,
       validationMiddleware(CreateFeedDto),
       this.createFeed
     );
     this.router.patch(
       `${this.path}/:id`,
+      authMiddleware,
       validationMiddleware(FeedDto, true),
       this.modifyFeed
     );
-    this.router.delete(`${this.path}/:id`, this.deleteFeed);
+    this.router.delete(`${this.path}/:id`, authMiddleware, this.deleteFeed);
   }
 
   private getAllFeeds = (
