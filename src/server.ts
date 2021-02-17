@@ -1,6 +1,9 @@
 import App from "./app";
 import FeedsController from "./feeds/feeds.controller";
+import validateEnv from './utils/validateEnv';
 
-const app = new App([new FeedsController()], 5000);
+validateEnv();
 
+const app = new App([new FeedsController()]);
 app.listen();
+

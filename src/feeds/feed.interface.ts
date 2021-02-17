@@ -1,4 +1,4 @@
-export default interface Feed {
+export interface Feed {
     name: string;
     url: string;
     // lastFetched: Date;
@@ -7,5 +7,13 @@ export default interface Feed {
     lastFetched: string;
     createdAt: string;
     updatedAt: string;
+}
 
+export interface NewFeed {
+    name: string;
+    url: string;
+}
+
+export interface FeedUrl {
+    url: string;
 }
