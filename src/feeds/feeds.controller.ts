@@ -4,6 +4,9 @@ import feedModel from "./feeds.model";
 import * as rssFinder from "rss-finder";
 import * as Parser from "rss-parser";
 import Controller from "../interfaces/controller.interface";
+import FeedNotFoundException from "../exceptions/FeedNotFoundException";
+import { CreateFeedDto, FeedDto } from "./feed.dto";
+import validationMiddleware from "../middleware/validation.middleware";
 
 class FeedsController implements Controller {
   public path = "/feeds";
@@ -16,8 +19,16 @@ class FeedsController implements Controller {
   public intializeRoutes() {
     this.router.get(this.path, this.getAllFeeds);
     this.router.get(`${this.path}/:id`, this.getFeed);
-    this.router.post(this.path, this.createFeed);
-    this.router.patch(`${this.path}/:id`, this.modifyFeed);
+    this.router.post(
+      this.path,
+      validationMiddleware(CreateFeedDto),
+      this.createFeed
+    );
+    this.router.patch(
+      `${this.path}/:id`,
+      validationMiddleware(FeedDto, true),
+      this.modifyFeed
+    );
     this.router.delete(`${this.path}/:id`, this.deleteFeed);
   }
 
@@ -30,10 +41,18 @@ class FeedsController implements Controller {
     });
   };
 
-  private getFeed = (request: express.Request, response: express.Response) => {
+  private getFeed = (
+    request: express.Request,
+    response: express.Response,
+    next: express.NextFunction
+  ) => {
     const id = request.params.id;
     feedModel.findById(id).then((feed) => {
-      response.send(feed);
+      if (feed) {
+        response.send(feed);
+      } else {
+        next(new FeedNotFoundException(id));
+      }
     });
   };
 
@@ -77,25 +96,31 @@ class FeedsController implements Controller {
 
   private modifyFeed = (
     request: express.Request,
-    response: express.Response
+    response: express.Response,
+    next: express.NextFunction
   ) => {
     const id = request.params.id;
     const feedData: Feed = request.body;
     feedModel.findByIdAndUpdate(id, feedData, { new: true }).then((feed) => {
-      response.send(feed);
+      if (feed) {
+        response.send(feed);
+      } else {
+        next(new FeedNotFoundException(id));
+      }
     });
   };
 
   private deleteFeed = (
     request: express.Request,
-    response: express.Response
+    response: express.Response,
+    next: express.NextFunction
   ) => {
     const id = request.params.id;
     feedModel.findByIdAndDelete(id).then((successResponse) => {
       if (successResponse) {
-        response.send(200);
+        response.sendStatus(200);
       } else {
-        response.send(404);
+        next(new FeedNotFoundException(id));
       }
     });
   };
