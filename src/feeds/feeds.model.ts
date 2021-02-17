@@ -4,7 +4,10 @@ import { Feed } from "./feed.interface";
 const feedSchema = new mongoose.Schema(
   {
     name: String,
-    url: String,
+    url: {
+      type: String,
+      unique: true
+    },
     lastFetched: Date,
   },
   {
