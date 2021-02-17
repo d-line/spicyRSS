@@ -1,5 +1,4 @@
 import { Feed } from 'feeds/feed.interface';
-import * as mongoose from 'mongoose';
 
 export interface Story {
     title: string;
