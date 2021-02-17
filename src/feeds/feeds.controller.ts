@@ -8,6 +8,7 @@ import FeedNotFoundException from "../exceptions/FeedNotFoundException";
 import { CreateFeedDto, FeedDto } from "./feed.dto";
 import validationMiddleware from "../middleware/validation.middleware";
 import authMiddleware from "../middleware/auth.middleware";
+import FeedAlreadyExistsException from "../exceptions/FeedAlreadyExistsException";
 
 class FeedsController implements Controller {
   public path = "/feeds";
@@ -61,10 +62,10 @@ class FeedsController implements Controller {
 
   private createFeed = (
     request: express.Request,
-    response: express.Response
+    response: express.Response,
+    next: express.NextFunction
   ) => {
     const url: FeedUrl = request.body;
-    console.log(url);
     rssFinder(url)
       .then((res) => {
         console.table(res);
@@ -85,7 +86,7 @@ class FeedsController implements Controller {
                 response.send(savedFeed);
               })
               .catch((err) => {
-                console.error(`save Feed error => ${err}`);
+                next(new FeedAlreadyExistsException(url.url))
               });
           })
           .catch((err) => {
