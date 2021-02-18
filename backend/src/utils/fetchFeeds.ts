@@ -71,7 +71,9 @@ mongoose
       storyModel.create(newStory, (err) => {
         if (!err) {
           // eslint-disable-next-line
-          console.log(`\t${feed.name} => ${newStory.title} [${newStory.permalink}]`);
+          console.log(`${feed.name} => ${newStory.title} [${newStory.permalink}]`);
+        } else {
+          console.error(err);
         }
       });
     });

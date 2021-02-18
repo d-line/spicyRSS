@@ -29,6 +29,13 @@ const storySchema = new mongoose.Schema(
   }
 );
 
+storySchema.index({
+  permalink: 1,
+  feed: 1,
+}, {
+  unique: true,
+}); 
+
 const storyModel = mongoose.model<Story & mongoose.Document>(
   "Story",
   storySchema
