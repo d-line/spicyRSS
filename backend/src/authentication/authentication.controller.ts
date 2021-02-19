@@ -49,9 +49,8 @@ class AuthenticationController implements Controller {
         password: hashedPassword,
       });
       user.password = undefined;
-      const tokenData = this.createToken(user);
-      response.setHeader("Set-Cookie", [this.createCookie(tokenData)]);
-      response.send(user);
+      const userWithToken = {...user, token: this.createToken(user).token };
+      response.send(userWithToken);
     }
   };
 
@@ -61,7 +60,7 @@ class AuthenticationController implements Controller {
     next: express.NextFunction
   ) => {
     const logInData: LogInDto = request.body;
-    const user = await userModel.findOne({ email: logInData.email });
+    const user: User = await userModel.findOne({ email: logInData.email }).lean();
     if (user) {
       const isPasswordMatching = await bcrypt.compare(
         logInData.password,
@@ -69,9 +68,8 @@ class AuthenticationController implements Controller {
       );
       if (isPasswordMatching) {
         user.password = undefined;
-        const tokenData = this.createToken(user);
-        response.setHeader("Set-Cookie", [this.createCookie(tokenData)]);
-        response.send(user);
+        const userWithToken = {...user, token: this.createToken(user).token };
+        response.send(userWithToken);
       } else {
         next(new WrongCredentialsException());
       }
@@ -98,6 +96,7 @@ class AuthenticationController implements Controller {
     const dataStoredInToken: DataStoredInToken = {
       _id: user._id,
     };
+
     return {
       expiresIn,
       token: jwt.sign(dataStoredInToken, secret, { expiresIn }),
