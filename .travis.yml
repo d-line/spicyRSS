@@ -1,0 +1,41 @@
+language: node_js
+node_js:
+    - 10
+    - 12
+    - 14
+
+addons:
+    chrome: stable    
+env:
+    global:
+        CC_TEST_REPORTER_ID=1d40bb8478b35064d2288055d361d21f4ed32173d36c1140c10b732f6b4a9a65
+
+before_install:
+    - cd frontend
+    - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+    - chmod +x ./cc-test-reporter
+    - cd ..
+
+install:
+    - cd backend
+    - npm install
+    - npm install -g eslint
+    - cd ..
+    - cd frontend
+    - npm install
+    - npm install -g tslint typescript
+    - cd ..
+
+script:
+    - cd backend
+    - npm run ci
+    - cd ..
+    - cd frontend
+    - npm run ci
+
+after_script:
+    - cat ./coverage/frontend/lcov.info | coveralls
+    - ./cc-test-reporter format-coverage -t lcov ./coverage/client/lcov.info -o coverage/client/.resultset.json
+    - ./cc-test-reporter format-coverage -t lcov ../backend/coverage/lcov.info
+    - ./cc-test-reporter upload-coverage
+  

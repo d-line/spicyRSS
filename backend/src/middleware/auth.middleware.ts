@@ -15,6 +15,7 @@ async function authMiddleware(
   if (headers && headers.authorization) {
     const secret = process.env.JWT_SECRET;
     const token = headers.authorization.split(" ")[1];
+    
     try {
       const verificationResponse = jwt.verify(
         token,

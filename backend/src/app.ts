@@ -13,7 +13,7 @@ class App {
   public app: express.Application;
   
 
-  constructor(controllers) {
+  constructor(controllers: Controller[]) {
     this.app = express();
     
     this.connectToTheDatabase();
@@ -39,7 +39,7 @@ class App {
     this.app.use(errorMiddleware);
   }
 
-  public listen() {
+  public listen():void {
     this.app.listen(process.env.PORT, () => {
       console.log(`App listening on the port ${process.env.PORT}`);
     });
