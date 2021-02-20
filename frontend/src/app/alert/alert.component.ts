@@ -5,7 +5,7 @@ import { Subscription } from 'rxjs';
 import { Alert, AlertType } from './alert';
 import { AlertService } from './alert.service';
 
-@Component({ selector: 'rss-alert', templateUrl: 'alert.component.html' })
+@Component({ selector: 'app-alert', templateUrl: 'alert.component.html' })
 export class AlertComponent implements OnInit, OnDestroy {
   @Input() id = 'default-alert';
   @Input() fade = true;
@@ -60,6 +60,7 @@ export class AlertComponent implements OnInit, OnDestroy {
 
     if (this.fade) {
       // fade out alert
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
       this.alerts.find((x) => x === alert)!.fade = true;
 
       // remove alert after faded out
@@ -84,7 +85,7 @@ export class AlertComponent implements OnInit, OnDestroy {
       [AlertType.Warning]: 'alert alert-warning',
     };
 
-    classes.push(alertTypeClass[alert.type!]);
+    classes.push(alertTypeClass[alert.type || AlertType.Error]);
 
     if (alert.fade) {
       classes.push('fade');

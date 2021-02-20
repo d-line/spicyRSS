@@ -11,9 +11,14 @@ export class Alert {
     }
 }
 
+// eslint-disable-next-line no-shadow
 export enum AlertType {
+    // eslint-disable-next-line @typescript-eslint/naming-convention
     Success,
+    // eslint-disable-next-line @typescript-eslint/naming-convention
     Error,
+    // eslint-disable-next-line @typescript-eslint/naming-convention
     Info,
+    // eslint-disable-next-line @typescript-eslint/naming-convention
     Warning
 }
