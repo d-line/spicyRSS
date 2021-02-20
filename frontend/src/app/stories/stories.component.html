@@ -1,0 +1,16 @@
+<div class="col-md-6 offset-md-3 mt-5">
+  <div class="card" *ngFor="let story of stories">
+    <div class="card-header">
+      {{ story.feed.name }}
+    </div>
+    <div class="card-body">
+      <h6 class="card-title">{{ story.title }}</h6>
+      <p class="card-text" [innerHtml]="story.body">
+      </p>
+      <a href="{{story.permalink}}" target="_blank" class="btn btn-primary">Go</a>
+    </div>
+    <div class="card-footer text-muted">
+        {{ story.published }}
+      </div>
+  </div>
+</div>

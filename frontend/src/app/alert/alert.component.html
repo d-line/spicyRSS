@@ -1,0 +1,4 @@
+<div *ngFor="let alert of alerts" class="{{ cssClass(alert) }}">
+  <a href="#" class="close" (click)="removeAlert(alert)" data-dismiss="alert">&times;</a>
+  <span [innerHTML]="alert.message"></span>
+</div>
