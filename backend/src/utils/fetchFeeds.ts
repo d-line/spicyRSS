@@ -40,9 +40,9 @@ mongoose
 
         feeds.forEach((feed) => {
           parser.parseURL(feed.url).then(data => {
-            let maxDate = data.items.map(d => d.pubDate).sort((a, b) => (new Date(b).getTime()) - (new Date(a).getTime()))[0];
+            const maxDate = data.items.map(d => d.pubDate).sort((a, b) => (new Date(b).getTime()) - (new Date(a).getTime()))[0];
             addStories(feed, data.items);
-            feedModel.findByIdAndUpdate(feed._id, {lastFetched: new Date(maxDate)}).then(data => {
+            feedModel.findByIdAndUpdate(feed._id, {lastFetched: new Date(maxDate)}).then(() => {
               console.log(`Feed [${feed.name}] updated at ${maxDate}`);
             }).catch(err => {
               console.error(`Failed to update feed ===> ${err}`);
@@ -59,6 +59,7 @@ mongoose
     process.exit(1);
   });
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const addStories = (feed: Feed, stories: any[]) => {
     stories.forEach((story) => {
       const newStory = {

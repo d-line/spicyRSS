@@ -10,7 +10,7 @@ async function authMiddleware(
   request: RequestWithUser,
   response: Response,
   next: NextFunction
-) {
+):Promise<void> {
   const headers = request.headers;
   if (headers && headers.authorization) {
     const secret = process.env.JWT_SECRET;
@@ -24,6 +24,7 @@ async function authMiddleware(
       const id = verificationResponse._id;
       const user = await userModel.findById(id);
       if (user) {
+        // eslint-disable-next-line require-atomic-updates
         request.user = user;
         next();
       } else {

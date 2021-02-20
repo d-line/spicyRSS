@@ -1,6 +1,6 @@
 import { cleanEnv, str, port } from "envalid";
 
-function validateEnv() {
+function validateEnv(): void {
   cleanEnv(process.env, {
     MONGO_URI: str(),
     PORT: port(),

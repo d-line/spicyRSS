@@ -46,7 +46,11 @@
         "extends": [
           "plugin:@angular-eslint/template/recommended"
         ],
-        "rules": {}
+        "rules": {
+            "component-selector": [
+                true, "element", "rss", "kebab-case"
+            ]
+        }
       }
     ]
   }
