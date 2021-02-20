@@ -15,7 +15,7 @@ class StoriesController implements Controller {
     this.intializeRoutes();
   }
 
-  public intializeRoutes() {
+  public intializeRoutes(): void {
     this.router.get("/news", authMiddleware, this.getUnread);
     this.router.get("/feed/:id", authMiddleware, this.getStoriesForFeed);
     this.router.get("/archive", authMiddleware, this.getRead);

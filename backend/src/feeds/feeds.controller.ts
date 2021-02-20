@@ -18,7 +18,7 @@ class FeedsController implements Controller {
     this.intializeRoutes();
   }
 
-  public intializeRoutes() {
+  public intializeRoutes(): void {
     this.router.get(this.path, authMiddleware, this.getAllFeeds);
     this.router.get(`${this.path}/:id`, authMiddleware, this.getFeed);
     this.router.post(
@@ -85,7 +85,7 @@ class FeedsController implements Controller {
               .then((savedFeed) => {
                 response.send(savedFeed);
               })
-              .catch((err) => {
+              .catch(() => {
                 next(new FeedAlreadyExistsException(url.url))
               });
           })

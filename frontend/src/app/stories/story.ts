@@ -1,4 +1,4 @@
-import { Feed } from "../feeds/feed";
+import { Feed } from '../feeds/feed';
 
 export interface Story {
     title: string;

@@ -3,7 +3,8 @@ import { validate, ValidationError } from 'class-validator';
 import * as express from 'express';
 import HttpException from '../exceptions/HttpException';
  
-function validationMiddleware<T>(type: any, skipMissingProperties = false): express.RequestHandler {
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types,@typescript-eslint/no-explicit-any
+function validationMiddleware(type: any, skipMissingProperties = false): express.RequestHandler {
   return (req, res, next) => {
     validate(plainToClass(type, req.body), { skipMissingProperties })
       .then((errors: ValidationError[]) => {
