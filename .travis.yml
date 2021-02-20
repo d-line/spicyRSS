@@ -36,6 +36,6 @@ script:
 after_script:
     - cat ./coverage/frontend/lcov.info | coveralls
     - ./cc-test-reporter format-coverage -t lcov ./coverage/client/lcov.info -o coverage/client/.resultset.json
-    - ./cc-test-reporter format-coverage -t lcov ../backend/coverage/lcov.info
+    - ./cc-test-reporter format-coverage -t lcov ../backend/coverage/lcov.info -o ../backend/coverage/.resultset.json
     - ./cc-test-reporter upload-coverage
   

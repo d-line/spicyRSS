@@ -4,7 +4,7 @@ import { StoryService } from './story.service';
 import { first } from 'rxjs/operators';
 
 @Component({
-  selector: 'rss-stories',
+  selector: 'app-stories',
   templateUrl: './stories.component.html',
   styleUrls: ['./stories.component.scss'],
 })

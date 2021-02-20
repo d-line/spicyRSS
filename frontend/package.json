@@ -8,7 +8,7 @@
     "test": "ng test --no-watch",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "ci": "npm run lint"
+    "ci": "npm run lint && npm test"
   },
   "private": true,
   "dependencies": {

@@ -47,9 +47,6 @@
           "plugin:@angular-eslint/template/recommended"
         ],
         "rules": {
-            "component-selector": [
-                true, "element", "rss", "kebab-case"
-            ]
         }
       }
     ]

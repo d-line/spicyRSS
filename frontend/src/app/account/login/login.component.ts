@@ -33,7 +33,7 @@ export class LoginComponent implements OnInit {
 
   // convenience getter for easy access to form fields
   get f() {
-    return this.form!.controls;
+    return this.form.controls;
   }
 
   onSubmit() {
@@ -43,7 +43,7 @@ export class LoginComponent implements OnInit {
     this.alertService.clear();
 
     // stop here if form is invalid
-    if (this.form!.invalid) {
+    if (this.form.invalid) {
       return;
     }
 
