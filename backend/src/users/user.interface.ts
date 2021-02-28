@@ -1,7 +1,9 @@
-interface User {
+export interface User {
   _id?: string;
-  email: string;
   password: string;
 }
 
-export default User;
+export interface LoginToken {
+  token: string;
+}
+
