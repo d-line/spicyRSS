@@ -44,7 +44,7 @@ class StoriesController implements Controller {
     feedModel.findById(id).then((feed) => {
       if (feed) {
         storyModel
-          .find({ feed }, [])
+          .find({ feed }, [], { sort: "-published" })
           .populate("feed")
           .then((stories) => {
             response.send(stories);
