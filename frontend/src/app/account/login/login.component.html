@@ -1,21 +1,27 @@
-<div class="card">
-    <h4 class="card-header">Login</h4>
-    <div class="card-body">
-        <form [formGroup]="form" (ngSubmit)="onSubmit()">
-            <div class="form-group">
-                <label for="password">Password</label>
-                <input type="password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
-                <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
-                    <div *ngIf="f.password.errors.required">Password is required</div>
+<div class="wrapper full-page-wrapper page-auth page-login text-center">
+    <div class="inner-page">
+        <div class="logo">
+            <a href="">
+                <img src="assets/img/logo.png" alt="SpicyRSS Logo">
+            </a>
+        </div>
+        <div class="login-box mx-auto d-block">
+            <form class="form-horizontal" [formGroup]="form" (ngSubmit)="onSubmit()">
+                <p class="title">Use your password</p>
+                <label for="password" class="sr-only">Password</label>
+                <div class="form-group">
+                        <div class="input-group">
+                            <input type="password" placeholder="password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+                            <div class="input-group-append">
+                                <span class="input-group-text"><fa-icon [icon]="faLock"></fa-icon></span>
+                            </div>
+                        </div>
                 </div>
-            </div>
-            <div class="form-group">
-                <button [disabled]="loading" class="btn btn-primary">
-                    <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
-                    Login
+                <button class="btn btn-custom-primary btn-lg btn-block btn-auth" [disabled]="loading">
+                    <span *ngIf="loading" class="spinner-border"></span>
+                    <fa-icon [icon]="faArrowAltCircleRight"></fa-icon> Login
                 </button>
-                <a routerLink="../register" class="btn btn-link">Register</a>
-            </div>
-        </form>
+            </form>
+        </div>
     </div>
 </div>

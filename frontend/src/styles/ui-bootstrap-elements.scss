@@ -1,0 +1,178 @@
+/*------------------------------------------------*/
+/*	UI Bootstrap Elements
+/*------------------------------------------------*/
+
+.form-horizontal .control-label {
+  text-align: left;
+}
+
+.form-control,
+.input-group .form-control {
+  font-size: 14px;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.input-group-text {
+  border-radius: 0;
+  font-size: 14px;
+  background-color: #fff;
+
+  &.input-sm,
+  &.input-lg {
+    border-radius: 0;
+  }
+
+  i {
+    min-width: 12px;
+  }
+}
+
+
+/* button */
+.btn {
+  @include border-radius(0);
+
+  font-family: $button-font;
+
+  i {
+    margin-right: 3px;
+  }
+
+  &.active.focus,
+  &.active:focus,
+  &.focus,
+  &:active.focus,
+  &:active:focus,
+  &:focus {
+    outline: none;
+  }
+}
+
+.btn-default {
+  color: #fff;
+  background-color: $color-default-btn;
+  border-color: darken($color-default-btn, 5%);
+
+  &:hover,
+  &:focus,
+  &:active,
+  &.active {
+    color: #fff;
+    background-color: darken($color-default-btn, 10%);
+    border-color: darken($color-default-btn, 5%);
+  }
+
+  &.disabled,
+  &[disabled],
+  &.disabled:hover,
+  &[disabled]:hover,
+  &.disabled:focus,
+  &[disabled]:focus,
+  &.disabled:active,
+  &[disabled]:active,
+  &.disabled.active,
+  &[disabled].active {
+    background-color: lighten($color-default-btn, 10%);
+    border-color: darken($color-default-btn, 5%);
+  }
+
+  .caret {
+    border-top-color: #fff;
+  }
+}
+
+.btn-primary {
+  background-color: $color-primary;
+  border-color: darken($color-primary, 5%);
+
+  &:hover,
+  &:focus,
+  &:active,
+  &.active,
+  .open .dropdown-toggle.btn-primary {
+    background-color: darken($color-primary, 5%);
+  }
+}
+
+.btn-info {
+  background-color: $color-info;
+  border-color: darken($color-info, 5%);
+
+  &:hover,
+  &:focus,
+  &:active,
+  &.active,
+  .open .dropdown-toggle.btn-info {
+    background-color: darken($color-info, 5%);
+  }
+}
+
+.btn-success {
+  background-color: $color-success;
+  border-color: darken($color-success, 5%);
+
+  &:hover,
+  &:focus,
+  &:active,
+  &.active,
+  .open .dropdown-toggle.btn-success {
+    background-color: darken($color-success, 5%);
+  }
+}
+
+.btn-warning {
+  background-color: $color-warning;
+  border-color: darken($color-warning, 5%);
+
+  &:hover,
+  &:focus,
+  &:active,
+  &.active,
+  .open .dropdown-toggle.btn-warning {
+    background-color: darken($color-warning, 5%);
+  }
+}
+
+.btn-danger {
+  background-color: $color-danger;
+  border-color: darken($color-danger, 5%);
+
+  &:hover,
+  &:focus,
+  &:active,
+  &.active,
+  .open .dropdown-toggle.btn-danger {
+    background-color: darken($color-danger, 5%);
+  }
+}
+
+.btn-link {
+  border-color: transparent;
+
+  &:hover,
+  &:focus,
+  &:active,
+  &.active,
+  .open .dropdown-toggle.btn-link {
+    outline: none;
+    text-decoration: none;
+  }
+}
+
+.btn-group {
+  > .btn {
+    @include border-radius(0);
+
+    + .dropdown-toggle {
+      border-left: 1px solid rgba(0, 0, 0, 0.1);
+    }
+  }
+}
+
+.btn-group > .btn-group:nth-child(2) > .multiselect.btn {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+
