@@ -7,6 +7,8 @@ import FeedNotFoundException from "../exceptions/FeedNotFoundException";
 import { Story } from "./story.interface";
 import StoryNotFoundException from "../exceptions/StoryNotFoundException";
 
+const PER_PAGE = 10;
+
 class StoriesController implements Controller {
   public path = "/stories";
   public router = express.Router();
@@ -27,8 +29,11 @@ class StoriesController implements Controller {
     request: express.Request,
     response: express.Response
   ) => {
+    const page = parseInt(request.query.page as string, 10) || 1;
     storyModel
       .find({ isRead: false }, [], { sort: "-published" })
+      .skip(PER_PAGE * page - PER_PAGE)
+      .limit(PER_PAGE)
       .populate("feed")
       .then((stories) => {
         response.send(stories);

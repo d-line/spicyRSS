@@ -1,4 +1,9 @@
-<div class="col-md-6 offset-md-3 mt-5">
+<div class="col-md-6 offset-md-3 mt-5" 
+  infiniteScroll
+  [infiniteScrollDistance]="2"
+  [infiniteScrollThrottle]="50"
+  (scrolled)="onScroll()"
+  >
   <div class="card" *ngFor="let story of stories">
     <div class="card-header">
       {{ story.feed.name }}
