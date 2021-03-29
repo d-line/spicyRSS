@@ -12,7 +12,8 @@ import UserAlreadyExistsException from "../exceptions/UserAlreadyExistsException
 class AuthenticationService {
 
     public async register(userData: CreateUserDto): Promise<LoginToken> {
-        if (await userModel.find()) {
+        const users = await userModel.find();
+        if (users.length > 0) {
             throw new UserAlreadyExistsException();
         }
         const hashedPassword = await bcrypt.hash(userData.password, 10);
