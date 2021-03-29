@@ -3,3 +3,4 @@ db/
 .env
 .DS_Store
 coverage/
+frontend/src/environments/environment.prod.ts

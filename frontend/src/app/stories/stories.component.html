@@ -13,6 +13,7 @@
       <p class="card-text" [innerHtml]="story.body">
       </p>
       <a href="{{story.permalink}}" target="_blank" class="btn btn-primary">Go</a>
+      <button class="btn btn-danger" (click)="onRead(story)">Read</button>
     </div>
     <div class="card-footer text-muted">
         {{ story.published }}

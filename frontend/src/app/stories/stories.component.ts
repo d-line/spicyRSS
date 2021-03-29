@@ -31,4 +31,12 @@ export class StoriesComponent implements OnInit {
         this.stories = [...this.stories, ...stories]
       })
   }
+
+  public onRead(story: Story): void {
+    story.isRead = true;
+    this.storyService.update(story).pipe(first())
+      .subscribe((story: Story) => {
+        this.stories = this.stories.filter(s => s._id !== story._id);
+      })
+  }
 }
