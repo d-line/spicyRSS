@@ -8,6 +8,7 @@ import { ErrorInterceptor } from './utils/error.interceptor';
 import { JwtInterceptor } from './utils/jwt.interceptor';
 import { StoriesComponent } from './stories/stories.component';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    InfiniteScrollModule
+    InfiniteScrollModule,
+    NgbModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

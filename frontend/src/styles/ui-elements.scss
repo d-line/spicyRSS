@@ -1,0 +1,19 @@
+/*------------------------------------------------*/
+/*	UI Elements
+/*------------------------------------------------*/
+
+/* custom buttons */
+.btn-custom-primary {
+  background-color: $color-custom-primary;
+  border-color: darken($color-custom-primary, 5%);
+  color: #fff;
+
+  &:hover,
+  &:focus,
+  &:active,
+  &.active,
+  .open .dropdown-toggle.btn-warning {
+    background-color: darken($color-custom-primary, 2%);
+    color: #fff;
+  }
+}

@@ -1,0 +1,34 @@
+@import "../../../styles/base.scss";
+
+.page-auth {
+
+  .logo {
+		margin-bottom: 40px;
+	}
+
+  .login-box {
+    width: 100%;
+    border: 1px solid $line-color;
+    padding: 25px;
+    text-align: left;
+    background-color: #f1f1f1;
+
+    .title {
+      font-size: 1.2em;
+      line-height: 1;
+      margin-bottom: 15px;
+    }
+
+    form > input {
+      margin-bottom: 15px;
+
+      &:focus {
+        border-color: #ccc;
+      }
+    }
+
+    .btn-auth {
+			margin-top: 20px;
+		}
+  }
+}
