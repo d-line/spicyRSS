@@ -14,4 +14,8 @@ export class StoryService {
   public unread(page = 1): Observable<Story[]> {
     return this.http.get<Story[]>((`${environment.apiUrl}/news?page=${page}`));
   }
+
+  public update(story: Story): Observable<Story> {
+    return this.http.put<Story>(`${environment.apiUrl}/stories/${story._id}`, story);
+  }
 }

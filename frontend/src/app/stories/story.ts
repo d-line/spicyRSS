@@ -1,6 +1,7 @@
 import { Feed } from '../feeds/feed';
 
 export interface Story {
+    _id: string;
     title: string;
     permalink: string;
     body: string;
