@@ -11,7 +11,7 @@ import { environment } from '../environments/environment';
 export class StoryService {
   constructor(private router: Router, private http: HttpClient) {}
 
-  public unread(): Observable<Story[]> {
-    return this.http.get<Story[]>((`${environment.apiUrl}/news`));
+  public unread(page = 1): Observable<Story[]> {
+    return this.http.get<Story[]>((`${environment.apiUrl}/news?page=${page}`));
   }
 }

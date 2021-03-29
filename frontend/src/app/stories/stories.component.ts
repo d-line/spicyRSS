@@ -10,13 +10,25 @@ import { first } from 'rxjs/operators';
 })
 export class StoriesComponent implements OnInit {
   stories: Story[] = [];
+  currentPage: number = 1;
 
   constructor(private storyService: StoryService) {}
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
+    this.currentPage = 1
     this.storyService
       .unread()
       .pipe(first())
       .subscribe((stories: Story[]) => (this.stories = stories));
+  }
+
+  public onScroll(): void {
+    this.currentPage++;
+    this.storyService
+      .unread(this.currentPage)
+      .pipe(first())
+      .subscribe((stories: Story[]) => {
+        this.stories = [...this.stories, ...stories]
+      })
   }
 }
