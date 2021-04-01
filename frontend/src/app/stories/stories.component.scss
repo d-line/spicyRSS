@@ -1,3 +1,9 @@
 .card {
     margin-bottom: 15px;
+  
+  .card-body {
+    img {
+      max-width: 100%
+    }
+  }
 }
