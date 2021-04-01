@@ -7,7 +7,7 @@ import FeedNotFoundException from "../exceptions/FeedNotFoundException";
 import { Story } from "./story.interface";
 import StoryNotFoundException from "../exceptions/StoryNotFoundException";
 
-const PER_PAGE = 10;
+const PER_PAGE = 100;
 
 class StoriesController implements Controller {
   public path = "/stories";
