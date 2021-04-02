@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Story } from './story';
-import { StoryService } from './story.service';
+import { Story } from '../story';
+import { StoryService } from '../story.service';
 import { first } from 'rxjs/operators';
 
 @Component({
@@ -32,11 +32,11 @@ export class StoriesComponent implements OnInit {
       })
   }
 
-  public onRead(story: Story): void {
-    story.isRead = true;
-    this.storyService.update(story).pipe(first())
-      .subscribe((story: Story) => {
-        this.stories = this.stories.filter(s => s._id !== story._id);
-      })
+  public onCloseAll(story: Story) {
+    this.stories.forEach((el: Story, index) => {
+      if (el._id !== story._id) {
+        this.stories[index].isOpened = false;
+      }
+    });
   }
 }

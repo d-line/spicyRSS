@@ -6,22 +6,20 @@ import { AlertComponent } from './alert/alert.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ErrorInterceptor } from './utils/error.interceptor';
 import { JwtInterceptor } from './utils/jwt.interceptor';
-import { StoriesComponent } from './stories/stories.component';
-import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { StoriesModule } from './stories/stories.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    AlertComponent,
-    StoriesComponent
+    AlertComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    InfiniteScrollModule,
-    NgbModule
+    NgbModule,
+    StoriesModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

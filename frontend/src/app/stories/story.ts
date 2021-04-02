@@ -10,4 +10,5 @@ export interface Story {
     isRead: boolean;
     keepUnread: boolean;
     isStarred: boolean;
+    isOpened: boolean;
 }

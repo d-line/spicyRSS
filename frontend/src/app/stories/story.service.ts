@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { Story } from './story';
 import { environment } from '../../environments/environment';
 
@@ -17,5 +17,14 @@ export class StoryService {
 
   public update(story: Story): Observable<Story> {
     return this.http.put<Story>(`${environment.apiUrl}/stories/${story._id}`, story);
+  }
+
+  public markAsRead(story: Story): Observable<Story> {
+    if (!story.isRead) {
+      story.isRead = true;
+      return this.update(story);
+    } else {
+      return of(story);
+    }
   }
 }
