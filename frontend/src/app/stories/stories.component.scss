@@ -1,6 +1,8 @@
 .card {
-    margin-bottom: 15px;
-  
+    margin-bottom: 15px;  
+}
+
+:host ::ng-deep {
   .card-body {
     img {
       max-width: 100%
