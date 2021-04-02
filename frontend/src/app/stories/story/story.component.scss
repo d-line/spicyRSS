@@ -1,0 +1,82 @@
+.card {
+  margin-bottom: 5px;  
+
+  &.read {
+    opacity: 0.5;
+  }
+
+  &.today {
+    background-color: aliceblue;
+  }
+  
+  &.keepUnread {
+    .card-header {
+      font-weight: bold;
+    } 
+  }
+}
+
+.row {
+  a.btn.btn-primary, a.btn.btn-secondary{
+    margin-right: 5px;
+  }
+}
+
+.action {
+  border-top: 1px solid #dddddd;
+  a {
+    margin-top: 10px;
+  }
+  .time, .feed {
+    padding-top: 15px;
+  }
+}
+
+.card-header {
+  cursor: pointer;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.blog-title {
+  overflow: hidden;
+  padding-left: 5px;
+  img {
+    margin-right: 5px;
+  }
+}
+
+.story-details {
+  padding-right: 5px;
+  overflow: hidden;
+}
+
+.story-lead {
+  color: #e5e5e5;
+}
+
+.card-body {
+  display: none;
+  padding: 5px 15px;
+}
+
+.show {
+  border: 3px solid #343434;
+
+  .card-body {
+    display: block;
+  }
+}
+
+.card-text {
+  overflow-x: auto;
+}
+
+:host ::ng-deep {
+.card-text {
+  img {
+    max-width: 100%
+  }
+}
+}

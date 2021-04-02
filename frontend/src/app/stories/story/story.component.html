@@ -1,0 +1,46 @@
+<div [ngClass]="{
+  'card': true,
+  'read': story.isRead && !story.isOpened,
+  'show': story.isOpened,
+  'keepUnread': story.keepUnread,
+  'today': isToday(story.published)
+}" #top>
+  
+  <div class="card-header" (click)="toggle(top)">
+    <div class="row">
+      <div class="col-md-3 col-sm-4 blog-title">
+        <img src="{{ faviconUrl }}" width="16" height="16" />
+        {{ story.feed.name }}
+      </div>
+      <div class="col-md-9 col-sm-8 story-details">
+        <span class="story-title">{{ story.title }}</span>
+        <span class="story-lead">&mdash; {{ storyLead }}</span>
+      </div>
+    </div>
+  </div>
+  
+  <div class="card-body">
+    <h6 class="card-title"><a href="{{ story.permalink }}" target="_blank">{{ story.title }}</a></h6>
+    <small><a>{{ story.feed.name }}</a></small>
+    <div class="card-text" [innerHtml]="story.body"></div>
+
+    <div class="row action">
+      <div class="col-md-2 col-sm-4 text-left time">
+        {{ story.published | date: 'short' }}
+      </div>
+      <div class="col-md-7 feed">
+        <a [routerLink]="['/feeds', story.feed._id]">{{ story.feed.name }}</a>
+      </div>
+      <div class="col-md-3 col-sm-4 text-right">
+        <a href="#" (click)="$event.preventDefault(); toggleKeepUnread();" class="btn btn-secondary" target="_blank">
+          <fa-icon [icon]="iBookmark" *ngIf="!story.keepUnread"></fa-icon>
+          <fa-icon [icon]="iBookmarked" *ngIf="story.keepUnread"></fa-icon>
+        </a>
+        <a href="{{ story.permalink }}" class="btn btn-danger" target="_blank">
+          <fa-icon [icon]="iExternalLink"></fa-icon>
+        </a>
+      </div>
+    </div>
+  </div>
+  
+</div>

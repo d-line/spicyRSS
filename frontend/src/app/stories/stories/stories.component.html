@@ -1,0 +1,11 @@
+<div
+  infiniteScroll
+  [infiniteScrollDistance]="2"
+  [infiniteScrollThrottle]="50"
+  (scrolled)="onScroll()"
+  >
+  <div *ngFor="let story of stories">
+    <app-story [story]="story" (closeAll)="onCloseAll(story);"></app-story>
+  </div>
+  
+</div>
