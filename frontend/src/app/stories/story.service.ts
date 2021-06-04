@@ -9,7 +9,7 @@ import { environment } from '../../environments/environment';
   providedIn: 'root',
 })
 export class StoryService {
-  constructor(private router: Router, private http: HttpClient) {}
+  constructor(private http: HttpClient) {}
 
   public unread(page = 1): Observable<Story[]> {
     return this.http.get<Story[]>((`${environment.apiUrl}/news?page=${page}`));

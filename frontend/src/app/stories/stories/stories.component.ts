@@ -10,7 +10,7 @@ import { first } from 'rxjs/operators';
 })
 export class StoriesComponent implements OnInit {
   stories: Story[] = [];
-  currentPage: number = 1;
+  currentPage = 1;
 
   constructor(private storyService: StoryService) {}
 

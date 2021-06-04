@@ -5,4 +5,5 @@ export interface Feed {
     lastFetched: Date;
     createdAt: Date;
     updatedAt: Date;
+    storiesCount?: number;
 };
