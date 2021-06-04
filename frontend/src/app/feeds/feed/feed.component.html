@@ -1,0 +1,21 @@
+<div class="row feed-line">
+  <div class="col-sm-5  col-md-7 feed-title-container">
+    <p class="feed-title">
+      <i class="icon-circle status"></i>
+      <a [routerLink]="['/feeds', feed._id]">
+        {{ feed.name }}
+      </a>
+    </p>
+  </div>
+
+  <div class="col-sm-3 col-md-2 text-right">
+    {{ feed.storiesCount }}    
+  </div>
+
+  <div class="col-sm-4 col-md-3 feed-last-updated">
+    <span class="last-updated">Last Updated: </span>
+    <span class="last-updated-time" *ngIf="feed.lastFetched">{{ fetched }}</span>
+    <span class="last-updated-time" *ngIf="!feed.lastFetched">never</span>
+  </div>
+
+</div>

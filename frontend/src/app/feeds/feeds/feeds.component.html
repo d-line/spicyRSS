@@ -1,0 +1,7 @@
+<div id="feeds-container" *ngIf="feeds">
+  <ul id="feed-list">
+    <li class="feed" id="{{feed._id}}" data-id="{{feed._id}}" *ngFor="let feed of feeds">
+      <app-feed [feed]="feed"></app-feed>
+    </li>
+  </ul>
+</div>
