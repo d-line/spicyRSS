@@ -22,7 +22,7 @@ class AuthenticationService {
             password: hashedPassword,
         });
         user.password = undefined;
-        return  { token: this.createToken(user).token };
+        return { token: this.createToken(user).token };
     }
 
     public async login(logInData: LogInDto): Promise<LoginToken> {
@@ -45,18 +45,19 @@ class AuthenticationService {
     }
 
     private createToken(user: User): TokenData {
-        const expiresIn = 60 * 60; // an hour
+        const expiresIn = parseInt(process.env.AUTH_TOKEN_TTL, 10);
         const secret = process.env.JWT_SECRET;
         const dataStoredInToken: DataStoredInToken = {
-          _id: user._id,
+            _id: user._id,
         };
-    
-        return {
-          expiresIn,
-          token: jwt.sign(dataStoredInToken, secret, { expiresIn }),
+
+        const tokenData = {
+            expiresIn,
+            token: jwt.sign(dataStoredInToken, secret, { expiresIn }),
         };
-      }
-    
+        return tokenData;
+    }
+
 }
 
 export default AuthenticationService;
