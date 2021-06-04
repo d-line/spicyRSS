@@ -40,7 +40,7 @@ class FeedsController implements Controller {
     request: express.Request,
     response: express.Response
   ) => {
-    feedModel.find().then((feeds) => {
+    feedModel.find().sort({name: 1}).then((feeds) => {
       response.send(feeds);
     });
   };
