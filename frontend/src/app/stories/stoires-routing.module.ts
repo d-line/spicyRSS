@@ -6,11 +6,8 @@ import { StoriesComponent } from './stories/stories.component';
 
 const routes: Routes = [
     {
-        path: '', component: LayoutComponent,
-        children: [
-            { path: '', component: StoriesComponent,  canActivate: [AuthGuard]},
-        ]
-    }
+        path: '', component: StoriesComponent,  canActivate: [AuthGuard]
+    },
 ];
 
 @NgModule({

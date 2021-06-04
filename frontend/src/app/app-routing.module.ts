@@ -7,7 +7,7 @@ const storiesModule = () => import('./stories/stories.module').then(x => x.Stori
 const routes: Routes = [
   { path: '', redirectTo: '/news', pathMatch: 'full' },
   { path: 'news', loadChildren: storiesModule },
-  { path: 'auth', loadChildren: accountModule }, 
+  { path: 'auth', loadChildren: accountModule },
   { path: '**', redirectTo: '/' }
 ];
 
