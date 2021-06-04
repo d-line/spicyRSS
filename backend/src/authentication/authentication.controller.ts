@@ -63,7 +63,6 @@ class AuthenticationController implements Controller {
     request: express.Request,
     response: express.Response
   ) => {
-    response.setHeader("Set-Cookie", ["Authorization=;Max-age=0"]);
     response.send(200);
   };
 }
