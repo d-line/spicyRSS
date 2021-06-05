@@ -1,5 +1,40 @@
-.feed-title-container {
-  white-space: nowrap;
+.card {
+  margin-bottom: 5px;
+}
+
+.card-header {
+  cursor: pointer;
   overflow: hidden;
   text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+div.feed-title {
+  overflow: hidden;
+  padding-left: 5px;
+  p {
+    margin: 0;
+  }
+  img {
+    margin-right: 5px;
+  }
+}
+
+.card-body {
+  display: none;
+  padding: 5px 15px;
+
+  .buttons {
+    .btn {
+      margin: 0 5px;
+    }
+  }
+}
+
+.show {
+  border: 3px solid #343434;
+
+  .card-body {
+    display: block;
+  }
 }

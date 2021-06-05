@@ -1,21 +1,45 @@
-<div class="row feed-line">
-  <div class="col-sm-5  col-md-7 feed-title-container">
-    <p class="feed-title">
-      <i class="icon-circle status"></i>
-      <a [routerLink]="['/feeds', feed._id]">
-        {{ feed.name }}
-      </a>
-    </p>
+<div [ngClass]="{
+  'card': true,
+  'show': feed.isOpened
+}" #top>
+
+  <div class="card-header" (click)="toggle(top)">
+    <div class="row">
+      <div class="col-sm-5  col-md-7 feed-title">
+        <p class="feed-title">
+          <i class="icon-circle status"></i>
+          {{ feed.name }}
+        </p>    
+      </div>
+      <div class="col-sm-3 col-md-2 text-right">
+        {{ feed.storiesCount }}    
+      </div>
+      <div class="col-sm-4 col-md-3 feed-last-updated">
+        <span class="last-updated">Last Updated: </span>
+        <span class="last-updated-time" *ngIf="feed.lastFetched">{{ fetched }}</span>
+        <span class="last-updated-time" *ngIf="!feed.lastFetched">never</span>
+      </div>        
+    </div>
   </div>
 
-  <div class="col-sm-3 col-md-2 text-right">
-    {{ feed.storiesCount }}    
-  </div>
+  <div class="card-body">
+    <h6 class="card-title">{{ feed.name }}</h6>
+    <span><a href="{{ feed.url }}" target="_blank">{{ feed.url }}</a></span>
 
-  <div class="col-sm-4 col-md-3 feed-last-updated">
-    <span class="last-updated">Last Updated: </span>
-    <span class="last-updated-time" *ngIf="feed.lastFetched">{{ fetched }}</span>
-    <span class="last-updated-time" *ngIf="!feed.lastFetched">never</span>
+    <app-feed-edit [feed]=feed *ngIf="edit" (closeForm)="onCloseForm(feed);"></app-feed-edit>
+
+    <ul>
+      <li><b>Last Fetched:</b> {{feed.lastFetched}}</li>
+      <li><b>Created:</b> {{feed.createdAt}}</li>
+      <li><b>Updated:</b> {{feed.updatedAt}}</li>
+      <li><b>Stories:</b> {{feed.storiesCount}}</li>  
+    </ul>
+
+    <div class="buttons">
+      <button type="button" class="btn btn-sm btn-primary" (click)="showEdit()" [disabled]="edit">Edit</button>
+      <button type="button" class="btn btn-sm btn-danger" [disabled]="edit" (click)="remove(feed);" >Unsubscribe</button>
+    </div>
+
   </div>
 
 </div>

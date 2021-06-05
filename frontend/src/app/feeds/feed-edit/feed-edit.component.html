@@ -1,0 +1,13 @@
+<form [formGroup]="feedForm" (ngSubmit)="onFormSubmit()">
+  <div class="form-group">
+      <label for="name">Name:</label>
+      <input type="text" class="form-control form-control-sm" 
+          id="name" name="name" formControlName="name" placeholder="Feed Name"/>
+  </div>
+  <div class="form-group">
+      <label for="url">Feed URL:</label>
+      <input type="text" class="form-control form-control-sm" 
+          id="url" name="url" formControlName="url" placeholder="Feed URL"/>
+  </div>
+  <button type="submit" class="btn btn-primary btn-sm">Save</button>
+</form>

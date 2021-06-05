@@ -32,4 +32,14 @@ export class FeedsComponent implements OnInit {
     });
   }
 
+  public onCloseAll(feed: Feed) {
+    this.feeds.forEach((el: Feed, index) => {
+      if (el._id !== feed._id) {
+        this.feeds[index].isOpened = false;
+      }
+    });
+  }
+  public onRemoved(feed: Feed) {
+    this.feeds = this.feeds.filter((v) => v._id !== feed._id);
+  }
 }
