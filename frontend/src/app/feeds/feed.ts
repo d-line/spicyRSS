@@ -6,4 +6,5 @@ export interface Feed {
     createdAt: Date;
     updatedAt: Date;
     storiesCount?: number;
+    isOpened?: boolean;
 };

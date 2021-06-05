@@ -9,6 +9,7 @@ import { CreateFeedDto, FeedDto } from "./feed.dto";
 import validationMiddleware from "../middleware/validation.middleware";
 import authMiddleware from "../middleware/auth.middleware";
 import FeedAlreadyExistsException from "../exceptions/FeedAlreadyExistsException";
+import storyModel from "../stories/stories.model";
 
 class FeedsController implements Controller {
   public path = "/feeds";
@@ -120,12 +121,14 @@ class FeedsController implements Controller {
     next: express.NextFunction
   ) => {
     const id = request.params.id;
-    feedModel.findByIdAndDelete(id).then((successResponse) => {
-      if (successResponse) {
-        response.sendStatus(200);
-      } else {
-        next(new FeedNotFoundException(id));
-      }
+    storyModel.deleteMany({feed: id}).then(() => {
+      feedModel.findByIdAndDelete(id).then((successResponse) => {
+        if (successResponse) {
+          response.send(successResponse);
+        } else {
+          next(new FeedNotFoundException(id));
+        }
+      });  
     });
   };
 }
