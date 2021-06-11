@@ -22,7 +22,7 @@
   <div class="card-body">
     <h6 class="card-title"><a href="{{ story.permalink }}" target="_blank">{{ story.title }}</a></h6>
     <small><a>{{ story.feed.name }}</a></small>
-    <div class="card-text" [innerHtml]="story.body"></div>
+    <div class="card-text" [innerHtml]="html"></div>
 
     <div class="row action">
       <div class="col-md-2 col-sm-4 text-left time">
